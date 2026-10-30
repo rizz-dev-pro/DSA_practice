@@ -1,0 +1,881 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>8. Interview &amp; placement toolkit · C++ DSA Advanced</title>
+<style>
+:root{--bg:#f7f8fb;--panel:#fff;--ink:#1d2433;--mute:#5b6577;--line:#e2e6ee;--brand:#2563eb;--brand2:#7c3aed;--code:#f3f5f9;--codeink:#1d2433;
+--note:#2563eb;--tip:#059669;--imp:#7c3aed;--warn:#d97706;--caut:#dc2626;--t17:#7c3aed;--t20:#ea580c;--green:#059669}
+@media (prefers-color-scheme:dark){:root:not([data-theme=light]){--bg:#0f131b;--panel:#161b26;--ink:#e6eaf2;--mute:#9aa4b8;--line:#262d3b;--brand:#7aa2ff;--brand2:#b79bff;--code:#0b0e14;--codeink:#e6eaf2;--note:#7aa2ff;--tip:#34d399;--imp:#b79bff;--warn:#fbbf24;--caut:#f87171;--t17:#b79bff;--t20:#fb923c;--green:#34d399}}
+:root[data-theme=dark]{--bg:#0f131b;--panel:#161b26;--ink:#e6eaf2;--mute:#9aa4b8;--line:#262d3b;--brand:#7aa2ff;--brand2:#b79bff;--code:#0b0e14;--codeink:#e6eaf2;--note:#7aa2ff;--tip:#34d399;--imp:#b79bff;--warn:#fbbf24;--caut:#f87171;--t17:#b79bff;--t20:#fb923c;--green:#34d399}
+:root{--hh:56px}
+*{box-sizing:border-box} html{scroll-behavior:smooth;scroll-padding-top:calc(var(--hh) + 16px)}
+@supports not selector(::-webkit-scrollbar){*{scrollbar-width:thin;scrollbar-color:color-mix(in srgb,var(--mute) 45%,transparent) transparent}}
+::-webkit-scrollbar{width:12px;height:12px}
+::-webkit-scrollbar-track,::-webkit-scrollbar-corner{background:transparent}
+::-webkit-scrollbar-thumb{background:color-mix(in srgb,var(--mute) 38%,transparent);border:3px solid transparent;background-clip:content-box;border-radius:999px;transition:background .2s}
+::-webkit-scrollbar-thumb:hover{background:var(--brand);background-clip:content-box;border:3px solid transparent}
+::-webkit-scrollbar-thumb:active{background:var(--brand2);background-clip:content-box;border:3px solid transparent}
+aside::-webkit-scrollbar{width:10px} .code pre::-webkit-scrollbar,.tw::-webkit-scrollbar{height:10px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.layout{display:grid;grid-template-columns:316px minmax(0,1fr);min-height:100vh}
+aside{position:sticky;top:var(--hh);height:calc(100vh - var(--hh));overflow:auto;padding:18px 12px;background:var(--panel);border-right:1px solid var(--line)}
+aside h2{border:0;background:none;padding:0;border-radius:0;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--mute);margin:14px 8px 8px}
+aside .top{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:0 4px 8px;font-size:13px}
+aside .top a{display:inline-flex;align-items:center;padding:7px 12px;border:1px solid var(--line);border-radius:999px;background:var(--bg);color:var(--ink);text-decoration:none;font-weight:600;transition:border-color .15s,background .15s}
+aside .top a:hover{border-color:var(--brand);background:color-mix(in srgb,var(--brand) 8%,var(--bg))}
+aside a.s{display:flex;gap:10px;align-items:center;margin:0 4px 6px;padding:9px 12px;min-height:42px;border:1px solid var(--line);border-radius:12px;background:var(--bg);color:var(--ink);text-decoration:none;font-size:14px;font-weight:500;line-height:1.3;box-shadow:0 1px 2px #0000000d;transition:transform .12s,border-color .15s,background .15s,box-shadow .15s}
+aside a.s:hover{border-color:var(--brand);background:color-mix(in srgb,var(--brand) 9%,var(--bg));transform:translateY(-1px);box-shadow:0 3px 8px #0000001a}
+aside a.s:active{transform:translateY(0);box-shadow:none}
+aside a.s:focus-visible,aside .top a:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+aside a.s.done{border-color:color-mix(in srgb,var(--green) 45%,var(--line))}
+aside a.s.active{background:linear-gradient(90deg,var(--brand),var(--brand2));border-color:transparent;color:#fff;font-weight:700;box-shadow:0 4px 12px color-mix(in srgb,var(--brand) 40%,transparent)}
+aside .n{flex:none;display:inline-grid;place-items:center;min-width:1.9em;height:1.9em;padding:0 4px;border-radius:8px;background:var(--code);color:var(--mute);font-size:12px;font-weight:700;font-variant-numeric:tabular-nums}
+aside a.active .n{background:#ffffff33;color:#fff}
+aside .ico{flex:none;width:1.4em;text-align:center}
+aside .chk{margin-left:auto;flex:none;color:var(--green);font-weight:800} a.s.done .chk::after{content:"✓"} a.s.active.done .chk{color:#fff}
+aside .sub{margin:-2px 4px 10px 30px;padding-left:10px;border-left:2px solid var(--line)}
+aside .sub a{display:block;padding:5px 8px;font-size:13px;color:var(--mute);text-decoration:none;border-radius:8px} aside .sub a:hover{color:var(--brand);background:var(--code)}
+aside .sub a.cur{color:var(--brand);background:color-mix(in srgb,var(--brand) 10%,var(--panel));font-weight:600;box-shadow:inset 3px 0 0 var(--brand)}
+#q{width:100%;margin:6px 0 8px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;font-size:14px}
+.hd{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:10px;height:var(--hh);padding:0 clamp(12px,2vw,20px);background:var(--panel);border-bottom:1px solid var(--line)}
+.hd .gsw{flex:0 1 360px;min-width:0;margin:0} .hd .sp{flex:1}
+.hd .brand{display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink);text-decoration:none;white-space:nowrap}
+.hd .brand img{display:block;border-radius:6px}
+.hd .brand span{background:linear-gradient(90deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hd .hl{padding:6px 10px;border-radius:8px;color:var(--mute);text-decoration:none;font-size:14px;font-weight:600;white-space:nowrap}
+.hd .hl:hover{color:var(--brand);background:var(--code)} .hd #menu{display:none!important;flex:none}
+.gsw{position:relative}
+.i{display:inline-block;width:1.15em;height:1.15em;vertical-align:-.2em;flex:none}
+aside .ico{display:inline-grid;place-items:center;color:var(--brand)} aside .ico .i{width:18px;height:18px} aside a.s.active .ico{color:#fff}
+.hi{display:inline-grid;place-items:center;width:1.55em;height:1.55em;margin-right:.1em;border-radius:.45em;vertical-align:-.3em;color:var(--brand);background:color-mix(in srgb,var(--brand) 12%,transparent)}
+.hi .i{width:.95em;height:.95em}
+.alert-title .i{width:1.15em;height:1.15em;vertical-align:-.22em;margin-right:2px}
+.pager a .i{color:var(--brand);margin-right:4px} .celebrate .i{color:var(--green)} .gsw input{width:100%;padding:8px 10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);font:inherit;font-size:14px}
+.gsw input:focus{outline:2px solid var(--brand);outline-offset:1px}
+#gsr{position:absolute;left:0;right:0;top:calc(100% + 4px);z-index:60;max-height:min(70vh,560px);overflow:auto;background:var(--panel);border:1px solid var(--line);border-radius:10px;box-shadow:0 10px 30px #0004}
+#gsr[hidden]{display:none}
+#gsr a{display:block;padding:8px 12px;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none;font-size:13.5px;line-height:1.4}
+#gsr a:last-child{border-bottom:0} #gsr a:hover,#gsr a.sel{background:color-mix(in srgb,var(--brand) 10%,var(--panel))}
+#gsr a b{display:block;font-size:13px;color:var(--brand)} #gsr a span{display:block;color:var(--mute);overflow-wrap:anywhere}
+#gsr mark{background:color-mix(in srgb,var(--warn) 35%,transparent);color:inherit;border-radius:3px;padding:0 1px}
+#gsr .gs-empty{margin:0;padding:12px;color:var(--mute);font-size:14px}
+main{padding:0 clamp(16px,4vw,48px) 80px;max-width:1080px;width:100%;min-width:0;margin:0 auto}
+article,.code,.tw,.alert{min-width:0;max-width:100%}
+.hero{padding:34px 0 14px}
+.hero h1{margin:0 0 6px;font-size:clamp(26px,4vw,38px);background:linear-gradient(90deg,var(--brand),var(--brand2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p{margin:0;color:var(--mute)}
+.hero h1 .hlogo{width:1.05em;height:1.05em;vertical-align:-.14em;margin-right:.35em;-webkit-text-fill-color:initial}
+aside .top a img.mini{width:18px;height:18px;margin-right:7px;border-radius:5px} .hero a{color:var(--brand)}
+.ticon{width:36px;height:36px;padding:0!important;display:inline-grid!important;place-items:center;border-radius:50%!important;line-height:0}
+.toolbar{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;align-items:center}
+button.t,a.t{border:1px solid var(--line);background:var(--panel);color:var(--ink);padding:6px 12px;border-radius:8px;cursor:pointer;font:inherit;font-size:14px;text-decoration:none;display:inline-block}
+h2{font-size:26px;margin:46px 0 12px;padding:12px 16px;border-radius:12px;background:var(--panel);border:1px solid var(--line);border-left:6px solid var(--brand)}
+h3{font-size:19px;margin:30px 0 8px;color:var(--brand)} h4{margin:20px 0 6px}
+p,li{max-width:78ch} ul,ol{padding-left:1.4em} li{margin:3px 0}
+a{color:var(--brand)} hr{border:0;border-top:1px dashed var(--line);margin:36px 0}
+code{font:13.5px/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;background:var(--code);padding:.12em .38em;border-radius:5px;color:var(--codeink)}
+.code{position:relative;margin:16px 0;border:1px solid var(--line);border-radius:12px;background:var(--code);overflow:hidden}
+.code pre{margin:0;padding:18px 22px;overflow:auto;background:transparent;color:var(--codeink);tab-size:4}
+.code pre code{background:none;padding:0;font-size:14px;line-height:1.7;white-space:pre}
+@media (max-width:600px){.code pre{padding:14px 14px}.code pre code{font-size:13px;line-height:1.65}}
+.code .lang{position:absolute;top:6px;right:70px;font:11px ui-monospace,monospace;color:var(--mute);text-transform:uppercase}
+.code .copy{position:absolute;top:5px;right:8px;border:1px solid var(--line);background:var(--panel);color:var(--ink);border-radius:6px;padding:2px 8px;font-size:12px;cursor:pointer;opacity:0;transition:.15s}
+.code:hover .copy,.code .copy:focus{opacity:1}
+.tw{overflow:auto;margin:14px 0;border:1px solid var(--line);border-radius:12px;background:var(--panel)}
+table{border-collapse:collapse;width:100%;font-size:14.5px}
+th,td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{background:var(--code);position:sticky;top:0;white-space:nowrap} tr:last-child td{border-bottom:0}
+td code{white-space:normal}
+.alert{margin:16px 0;padding:10px 16px;border-radius:12px;border:1px solid var(--line);border-left:5px solid var(--note);background:color-mix(in srgb,var(--note) 8%,var(--panel))}
+.alert p{margin:4px 0} .alert-title{font-weight:700;font-size:14px;color:var(--note)}
+.alert.tip{--note:var(--tip)} .alert.important{--note:var(--imp)} .alert.warning{--note:var(--warn)} .alert.caution{--note:var(--caut)}
+blockquote{margin:12px 0;padding:4px 14px;border-left:4px solid var(--line);color:var(--mute)}
+.tag{font-size:11px;font-weight:700;padding:1px 7px;border-radius:999px;border:1px solid currentColor;vertical-align:1px;white-space:nowrap}
+.tag.t17{color:var(--t17)} .tag.t20{color:var(--t20)}
+p:has(>a[id]:only-child){margin:0;height:0;line-height:0}
+/* per-section pages */
+.sec h2{margin-top:10px}
+.bar{height:8px;border-radius:99px;background:var(--line);overflow:hidden;margin:22px 0 4px}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--brand),var(--brand2));transition:width .4s}
+.meta{display:flex;justify-content:space-between;color:var(--mute);font-size:13px;gap:10px;flex-wrap:wrap}
+.donebox{margin:40px 0 18px;padding:18px;border-radius:14px;border:1px dashed var(--line);background:var(--panel);display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.donebox button{border:0;padding:10px 18px;border-radius:10px;font:inherit;font-weight:700;cursor:pointer;color:#fff;background:linear-gradient(135deg,var(--brand),var(--brand2))}
+.donebox.is-done button{background:var(--green)}
+.donebox .msg{color:var(--mute);font-size:15px}
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0}
+.pager a{display:block;padding:14px 16px;border-radius:12px;border:1px solid var(--line);background:var(--panel);color:var(--ink);text-decoration:none}
+.pager a small{display:block;color:var(--mute);font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+.pager a:hover{border-color:var(--brand)} .pager a.next{text-align:right}
+.pager a.hl{border-color:var(--green);box-shadow:0 0 0 2px color-mix(in srgb,var(--green) 25%,transparent)}
+.celebrate{display:none;margin:12px 0;padding:14px 16px;border-radius:12px;background:color-mix(in srgb,var(--green) 12%,var(--panel));border:1px solid var(--green)}
+.hint{color:var(--mute);font-size:13px;margin:6px 0 0}
+#top{position:fixed;right:18px;bottom:18px;z-index:20;width:44px;height:44px;border-radius:50%;border:0;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;font-size:20px;line-height:1;cursor:pointer;box-shadow:0 4px 14px #0004;opacity:0;visibility:hidden;transform:translateY(8px);transition:opacity .2s,transform .2s,visibility .2s}
+#top.show{opacity:1;visibility:visible;transform:none} #top:hover{filter:brightness(1.1)} #top:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
+.scrim{display:none}
+@media (max-width:900px){
+.layout{grid-template-columns:minmax(0,1fr)}
+.hd #menu{display:inline-grid!important} .hd .gsw{flex:1} .hd .sp,.hd .hl,.hd .brand span{display:none}
+aside{position:fixed;left:0;top:0;bottom:0;height:100%;width:min(330px,86vw);z-index:50;transform:translateX(-104%);transition:transform .22s ease;border-right:1px solid var(--line);visibility:hidden}
+body.menu-open aside{transform:none;visibility:visible;box-shadow:0 0 40px #0007}
+.scrim{position:fixed;inset:0;z-index:40;background:#0006}
+body.menu-open .scrim{display:block} body.menu-open{overflow:hidden}
+}
+@media print{aside,#top,.toolbar,.copy,.lang,.donebox,.pager,.bar,.meta,.hd,.scrim{display:none!important} .layout{display:block} body{background:#fff;color:#000;font-size:10pt} main{max-width:none;padding:0}
+h2{break-after:avoid;margin-top:18px;font-size:15pt} .code,.tw,.alert{break-inside:avoid} .code pre code{font-size:8pt;white-space:pre-wrap} table{font-size:8.5pt}}
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.code pre .hll { background-color: #ffffcc }
+
+.code pre .tk-c { color: #3D7B7B; font-style: italic } /* Comment */
+.code pre .tk-err { border: 1px solid #F00 } /* Error */
+.code pre .tk-k { color: #008000; font-weight: bold } /* Keyword */
+.code pre .tk-o { color: #666 } /* Operator */
+.code pre .tk-ch { color: #3D7B7B; font-style: italic } /* Comment.Hashbang */
+.code pre .tk-cm { color: #3D7B7B; font-style: italic } /* Comment.Multiline */
+.code pre .tk-cp { color: #9C6500 } /* Comment.Preproc */
+.code pre .tk-cpf { color: #3D7B7B; font-style: italic } /* Comment.PreprocFile */
+.code pre .tk-c1 { color: #3D7B7B; font-style: italic } /* Comment.Single */
+.code pre .tk-cs { color: #3D7B7B; font-style: italic } /* Comment.Special */
+.code pre .tk-gd { color: #A00000 } /* Generic.Deleted */
+.code pre .tk-ge { font-style: italic } /* Generic.Emph */
+.code pre .tk-ges { font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+.code pre .tk-gr { color: #E40000 } /* Generic.Error */
+.code pre .tk-gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.code pre .tk-gi { color: #008400 } /* Generic.Inserted */
+.code pre .tk-go { color: #717171 } /* Generic.Output */
+.code pre .tk-gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.code pre .tk-gs { font-weight: bold } /* Generic.Strong */
+.code pre .tk-gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.code pre .tk-gt { color: #04D } /* Generic.Traceback */
+.code pre .tk-kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.code pre .tk-kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.code pre .tk-kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.code pre .tk-kp { color: #008000 } /* Keyword.Pseudo */
+.code pre .tk-kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.code pre .tk-kt { color: #B00040 } /* Keyword.Type */
+.code pre .tk-m { color: #666 } /* Literal.Number */
+.code pre .tk-s { color: #BA2121 } /* Literal.String */
+.code pre .tk-na { color: #687822 } /* Name.Attribute */
+.code pre .tk-nb { color: #008000 } /* Name.Builtin */
+.code pre .tk-nc { color: #00F; font-weight: bold } /* Name.Class */
+.code pre .tk-no { color: #800 } /* Name.Constant */
+.code pre .tk-nd { color: #A2F } /* Name.Decorator */
+.code pre .tk-ni { color: #717171; font-weight: bold } /* Name.Entity */
+.code pre .tk-ne { color: #CB3F38; font-weight: bold } /* Name.Exception */
+.code pre .tk-nf { color: #00F } /* Name.Function */
+.code pre .tk-nl { color: #767600 } /* Name.Label */
+.code pre .tk-nn { color: #00F; font-weight: bold } /* Name.Namespace */
+.code pre .tk-nt { color: #008000; font-weight: bold } /* Name.Tag */
+.code pre .tk-nv { color: #19177C } /* Name.Variable */
+.code pre .tk-ow { color: #A2F; font-weight: bold } /* Operator.Word */
+.code pre .tk-w { color: #BBB } /* Text.Whitespace */
+.code pre .tk-mb { color: #666 } /* Literal.Number.Bin */
+.code pre .tk-mf { color: #666 } /* Literal.Number.Float */
+.code pre .tk-mh { color: #666 } /* Literal.Number.Hex */
+.code pre .tk-mi { color: #666 } /* Literal.Number.Integer */
+.code pre .tk-mo { color: #666 } /* Literal.Number.Oct */
+.code pre .tk-sa { color: #BA2121 } /* Literal.String.Affix */
+.code pre .tk-sb { color: #BA2121 } /* Literal.String.Backtick */
+.code pre .tk-sc { color: #BA2121 } /* Literal.String.Char */
+.code pre .tk-dl { color: #BA2121 } /* Literal.String.Delimiter */
+.code pre .tk-sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.code pre .tk-s2 { color: #BA2121 } /* Literal.String.Double */
+.code pre .tk-se { color: #AA5D1F; font-weight: bold } /* Literal.String.Escape */
+.code pre .tk-sh { color: #BA2121 } /* Literal.String.Heredoc */
+.code pre .tk-si { color: #A45A77; font-weight: bold } /* Literal.String.Interpol */
+.code pre .tk-sx { color: #008000 } /* Literal.String.Other */
+.code pre .tk-sr { color: #A45A77 } /* Literal.String.Regex */
+.code pre .tk-s1 { color: #BA2121 } /* Literal.String.Single */
+.code pre .tk-ss { color: #19177C } /* Literal.String.Symbol */
+.code pre .tk-bp { color: #008000 } /* Name.Builtin.Pseudo */
+.code pre .tk-fm { color: #00F } /* Name.Function.Magic */
+.code pre .tk-vc { color: #19177C } /* Name.Variable.Class */
+.code pre .tk-vg { color: #19177C } /* Name.Variable.Global */
+.code pre .tk-vi { color: #19177C } /* Name.Variable.Instance */
+.code pre .tk-vm { color: #19177C } /* Name.Variable.Magic */
+.code pre .tk-il { color: #666 } /* Literal.Number.Integer.Long */@media (prefers-color-scheme:dark){pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+html:not([data-theme=light]) .code pre .hll { background-color: #49483e }
+
+html:not([data-theme=light]) .code pre .tk-c { color: #959077 } /* Comment */
+html:not([data-theme=light]) .code pre .tk-err { color: #ED007E; background-color: #1E0010 } /* Error */
+html:not([data-theme=light]) .code pre .tk-esc { color: #F8F8F2 } /* Escape */
+html:not([data-theme=light]) .code pre .tk-g { color: #F8F8F2 } /* Generic */
+html:not([data-theme=light]) .code pre .tk-k { color: #66D9EF } /* Keyword */
+html:not([data-theme=light]) .code pre .tk-l { color: #AE81FF } /* Literal */
+html:not([data-theme=light]) .code pre .tk-n { color: #F8F8F2 } /* Name */
+html:not([data-theme=light]) .code pre .tk-o { color: #FF4689 } /* Operator */
+html:not([data-theme=light]) .code pre .tk-x { color: #F8F8F2 } /* Other */
+html:not([data-theme=light]) .code pre .tk-p { color: #F8F8F2 } /* Punctuation */
+html:not([data-theme=light]) .code pre .tk-ch { color: #959077 } /* Comment.Hashbang */
+html:not([data-theme=light]) .code pre .tk-cm { color: #959077 } /* Comment.Multiline */
+html:not([data-theme=light]) .code pre .tk-cp { color: #959077 } /* Comment.Preproc */
+html:not([data-theme=light]) .code pre .tk-cpf { color: #959077 } /* Comment.PreprocFile */
+html:not([data-theme=light]) .code pre .tk-c1 { color: #959077 } /* Comment.Single */
+html:not([data-theme=light]) .code pre .tk-cs { color: #959077 } /* Comment.Special */
+html:not([data-theme=light]) .code pre .tk-gd { color: #FF4689 } /* Generic.Deleted */
+html:not([data-theme=light]) .code pre .tk-ge { color: #F8F8F2; font-style: italic } /* Generic.Emph */
+html:not([data-theme=light]) .code pre .tk-ges { color: #F8F8F2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+html:not([data-theme=light]) .code pre .tk-gr { color: #F8F8F2 } /* Generic.Error */
+html:not([data-theme=light]) .code pre .tk-gh { color: #F8F8F2 } /* Generic.Heading */
+html:not([data-theme=light]) .code pre .tk-gi { color: #A6E22E } /* Generic.Inserted */
+html:not([data-theme=light]) .code pre .tk-go { color: #66D9EF } /* Generic.Output */
+html:not([data-theme=light]) .code pre .tk-gp { color: #FF4689; font-weight: bold } /* Generic.Prompt */
+html:not([data-theme=light]) .code pre .tk-gs { color: #F8F8F2; font-weight: bold } /* Generic.Strong */
+html:not([data-theme=light]) .code pre .tk-gu { color: #959077 } /* Generic.Subheading */
+html:not([data-theme=light]) .code pre .tk-gt { color: #F8F8F2 } /* Generic.Traceback */
+html:not([data-theme=light]) .code pre .tk-kc { color: #66D9EF } /* Keyword.Constant */
+html:not([data-theme=light]) .code pre .tk-kd { color: #66D9EF } /* Keyword.Declaration */
+html:not([data-theme=light]) .code pre .tk-kn { color: #FF4689 } /* Keyword.Namespace */
+html:not([data-theme=light]) .code pre .tk-kp { color: #66D9EF } /* Keyword.Pseudo */
+html:not([data-theme=light]) .code pre .tk-kr { color: #66D9EF } /* Keyword.Reserved */
+html:not([data-theme=light]) .code pre .tk-kt { color: #66D9EF } /* Keyword.Type */
+html:not([data-theme=light]) .code pre .tk-ld { color: #E6DB74 } /* Literal.Date */
+html:not([data-theme=light]) .code pre .tk-m { color: #AE81FF } /* Literal.Number */
+html:not([data-theme=light]) .code pre .tk-s { color: #E6DB74 } /* Literal.String */
+html:not([data-theme=light]) .code pre .tk-na { color: #A6E22E } /* Name.Attribute */
+html:not([data-theme=light]) .code pre .tk-nb { color: #F8F8F2 } /* Name.Builtin */
+html:not([data-theme=light]) .code pre .tk-nc { color: #A6E22E } /* Name.Class */
+html:not([data-theme=light]) .code pre .tk-no { color: #66D9EF } /* Name.Constant */
+html:not([data-theme=light]) .code pre .tk-nd { color: #A6E22E } /* Name.Decorator */
+html:not([data-theme=light]) .code pre .tk-ni { color: #F8F8F2 } /* Name.Entity */
+html:not([data-theme=light]) .code pre .tk-ne { color: #A6E22E } /* Name.Exception */
+html:not([data-theme=light]) .code pre .tk-nf { color: #A6E22E } /* Name.Function */
+html:not([data-theme=light]) .code pre .tk-nl { color: #F8F8F2 } /* Name.Label */
+html:not([data-theme=light]) .code pre .tk-nn { color: #F8F8F2 } /* Name.Namespace */
+html:not([data-theme=light]) .code pre .tk-nx { color: #A6E22E } /* Name.Other */
+html:not([data-theme=light]) .code pre .tk-py { color: #F8F8F2 } /* Name.Property */
+html:not([data-theme=light]) .code pre .tk-nt { color: #FF4689 } /* Name.Tag */
+html:not([data-theme=light]) .code pre .tk-nv { color: #F8F8F2 } /* Name.Variable */
+html:not([data-theme=light]) .code pre .tk-ow { color: #FF4689 } /* Operator.Word */
+html:not([data-theme=light]) .code pre .tk-pm { color: #F8F8F2 } /* Punctuation.Marker */
+html:not([data-theme=light]) .code pre .tk-w { color: #F8F8F2 } /* Text.Whitespace */
+html:not([data-theme=light]) .code pre .tk-mb { color: #AE81FF } /* Literal.Number.Bin */
+html:not([data-theme=light]) .code pre .tk-mf { color: #AE81FF } /* Literal.Number.Float */
+html:not([data-theme=light]) .code pre .tk-mh { color: #AE81FF } /* Literal.Number.Hex */
+html:not([data-theme=light]) .code pre .tk-mi { color: #AE81FF } /* Literal.Number.Integer */
+html:not([data-theme=light]) .code pre .tk-mo { color: #AE81FF } /* Literal.Number.Oct */
+html:not([data-theme=light]) .code pre .tk-sa { color: #E6DB74 } /* Literal.String.Affix */
+html:not([data-theme=light]) .code pre .tk-sb { color: #E6DB74 } /* Literal.String.Backtick */
+html:not([data-theme=light]) .code pre .tk-sc { color: #E6DB74 } /* Literal.String.Char */
+html:not([data-theme=light]) .code pre .tk-dl { color: #E6DB74 } /* Literal.String.Delimiter */
+html:not([data-theme=light]) .code pre .tk-sd { color: #E6DB74 } /* Literal.String.Doc */
+html:not([data-theme=light]) .code pre .tk-s2 { color: #E6DB74 } /* Literal.String.Double */
+html:not([data-theme=light]) .code pre .tk-se { color: #AE81FF } /* Literal.String.Escape */
+html:not([data-theme=light]) .code pre .tk-sh { color: #E6DB74 } /* Literal.String.Heredoc */
+html:not([data-theme=light]) .code pre .tk-si { color: #E6DB74 } /* Literal.String.Interpol */
+html:not([data-theme=light]) .code pre .tk-sx { color: #E6DB74 } /* Literal.String.Other */
+html:not([data-theme=light]) .code pre .tk-sr { color: #E6DB74 } /* Literal.String.Regex */
+html:not([data-theme=light]) .code pre .tk-s1 { color: #E6DB74 } /* Literal.String.Single */
+html:not([data-theme=light]) .code pre .tk-ss { color: #E6DB74 } /* Literal.String.Symbol */
+html:not([data-theme=light]) .code pre .tk-bp { color: #F8F8F2 } /* Name.Builtin.Pseudo */
+html:not([data-theme=light]) .code pre .tk-fm { color: #A6E22E } /* Name.Function.Magic */
+html:not([data-theme=light]) .code pre .tk-vc { color: #F8F8F2 } /* Name.Variable.Class */
+html:not([data-theme=light]) .code pre .tk-vg { color: #F8F8F2 } /* Name.Variable.Global */
+html:not([data-theme=light]) .code pre .tk-vi { color: #F8F8F2 } /* Name.Variable.Instance */
+html:not([data-theme=light]) .code pre .tk-vm { color: #F8F8F2 } /* Name.Variable.Magic */
+html:not([data-theme=light]) .code pre .tk-il { color: #AE81FF } /* Literal.Number.Integer.Long */}pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+:root[data-theme=dark] .code pre .hll { background-color: #49483e }
+
+:root[data-theme=dark] .code pre .tk-c { color: #959077 } /* Comment */
+:root[data-theme=dark] .code pre .tk-err { color: #ED007E; background-color: #1E0010 } /* Error */
+:root[data-theme=dark] .code pre .tk-esc { color: #F8F8F2 } /* Escape */
+:root[data-theme=dark] .code pre .tk-g { color: #F8F8F2 } /* Generic */
+:root[data-theme=dark] .code pre .tk-k { color: #66D9EF } /* Keyword */
+:root[data-theme=dark] .code pre .tk-l { color: #AE81FF } /* Literal */
+:root[data-theme=dark] .code pre .tk-n { color: #F8F8F2 } /* Name */
+:root[data-theme=dark] .code pre .tk-o { color: #FF4689 } /* Operator */
+:root[data-theme=dark] .code pre .tk-x { color: #F8F8F2 } /* Other */
+:root[data-theme=dark] .code pre .tk-p { color: #F8F8F2 } /* Punctuation */
+:root[data-theme=dark] .code pre .tk-ch { color: #959077 } /* Comment.Hashbang */
+:root[data-theme=dark] .code pre .tk-cm { color: #959077 } /* Comment.Multiline */
+:root[data-theme=dark] .code pre .tk-cp { color: #959077 } /* Comment.Preproc */
+:root[data-theme=dark] .code pre .tk-cpf { color: #959077 } /* Comment.PreprocFile */
+:root[data-theme=dark] .code pre .tk-c1 { color: #959077 } /* Comment.Single */
+:root[data-theme=dark] .code pre .tk-cs { color: #959077 } /* Comment.Special */
+:root[data-theme=dark] .code pre .tk-gd { color: #FF4689 } /* Generic.Deleted */
+:root[data-theme=dark] .code pre .tk-ge { color: #F8F8F2; font-style: italic } /* Generic.Emph */
+:root[data-theme=dark] .code pre .tk-ges { color: #F8F8F2; font-weight: bold; font-style: italic } /* Generic.EmphStrong */
+:root[data-theme=dark] .code pre .tk-gr { color: #F8F8F2 } /* Generic.Error */
+:root[data-theme=dark] .code pre .tk-gh { color: #F8F8F2 } /* Generic.Heading */
+:root[data-theme=dark] .code pre .tk-gi { color: #A6E22E } /* Generic.Inserted */
+:root[data-theme=dark] .code pre .tk-go { color: #66D9EF } /* Generic.Output */
+:root[data-theme=dark] .code pre .tk-gp { color: #FF4689; font-weight: bold } /* Generic.Prompt */
+:root[data-theme=dark] .code pre .tk-gs { color: #F8F8F2; font-weight: bold } /* Generic.Strong */
+:root[data-theme=dark] .code pre .tk-gu { color: #959077 } /* Generic.Subheading */
+:root[data-theme=dark] .code pre .tk-gt { color: #F8F8F2 } /* Generic.Traceback */
+:root[data-theme=dark] .code pre .tk-kc { color: #66D9EF } /* Keyword.Constant */
+:root[data-theme=dark] .code pre .tk-kd { color: #66D9EF } /* Keyword.Declaration */
+:root[data-theme=dark] .code pre .tk-kn { color: #FF4689 } /* Keyword.Namespace */
+:root[data-theme=dark] .code pre .tk-kp { color: #66D9EF } /* Keyword.Pseudo */
+:root[data-theme=dark] .code pre .tk-kr { color: #66D9EF } /* Keyword.Reserved */
+:root[data-theme=dark] .code pre .tk-kt { color: #66D9EF } /* Keyword.Type */
+:root[data-theme=dark] .code pre .tk-ld { color: #E6DB74 } /* Literal.Date */
+:root[data-theme=dark] .code pre .tk-m { color: #AE81FF } /* Literal.Number */
+:root[data-theme=dark] .code pre .tk-s { color: #E6DB74 } /* Literal.String */
+:root[data-theme=dark] .code pre .tk-na { color: #A6E22E } /* Name.Attribute */
+:root[data-theme=dark] .code pre .tk-nb { color: #F8F8F2 } /* Name.Builtin */
+:root[data-theme=dark] .code pre .tk-nc { color: #A6E22E } /* Name.Class */
+:root[data-theme=dark] .code pre .tk-no { color: #66D9EF } /* Name.Constant */
+:root[data-theme=dark] .code pre .tk-nd { color: #A6E22E } /* Name.Decorator */
+:root[data-theme=dark] .code pre .tk-ni { color: #F8F8F2 } /* Name.Entity */
+:root[data-theme=dark] .code pre .tk-ne { color: #A6E22E } /* Name.Exception */
+:root[data-theme=dark] .code pre .tk-nf { color: #A6E22E } /* Name.Function */
+:root[data-theme=dark] .code pre .tk-nl { color: #F8F8F2 } /* Name.Label */
+:root[data-theme=dark] .code pre .tk-nn { color: #F8F8F2 } /* Name.Namespace */
+:root[data-theme=dark] .code pre .tk-nx { color: #A6E22E } /* Name.Other */
+:root[data-theme=dark] .code pre .tk-py { color: #F8F8F2 } /* Name.Property */
+:root[data-theme=dark] .code pre .tk-nt { color: #FF4689 } /* Name.Tag */
+:root[data-theme=dark] .code pre .tk-nv { color: #F8F8F2 } /* Name.Variable */
+:root[data-theme=dark] .code pre .tk-ow { color: #FF4689 } /* Operator.Word */
+:root[data-theme=dark] .code pre .tk-pm { color: #F8F8F2 } /* Punctuation.Marker */
+:root[data-theme=dark] .code pre .tk-w { color: #F8F8F2 } /* Text.Whitespace */
+:root[data-theme=dark] .code pre .tk-mb { color: #AE81FF } /* Literal.Number.Bin */
+:root[data-theme=dark] .code pre .tk-mf { color: #AE81FF } /* Literal.Number.Float */
+:root[data-theme=dark] .code pre .tk-mh { color: #AE81FF } /* Literal.Number.Hex */
+:root[data-theme=dark] .code pre .tk-mi { color: #AE81FF } /* Literal.Number.Integer */
+:root[data-theme=dark] .code pre .tk-mo { color: #AE81FF } /* Literal.Number.Oct */
+:root[data-theme=dark] .code pre .tk-sa { color: #E6DB74 } /* Literal.String.Affix */
+:root[data-theme=dark] .code pre .tk-sb { color: #E6DB74 } /* Literal.String.Backtick */
+:root[data-theme=dark] .code pre .tk-sc { color: #E6DB74 } /* Literal.String.Char */
+:root[data-theme=dark] .code pre .tk-dl { color: #E6DB74 } /* Literal.String.Delimiter */
+:root[data-theme=dark] .code pre .tk-sd { color: #E6DB74 } /* Literal.String.Doc */
+:root[data-theme=dark] .code pre .tk-s2 { color: #E6DB74 } /* Literal.String.Double */
+:root[data-theme=dark] .code pre .tk-se { color: #AE81FF } /* Literal.String.Escape */
+:root[data-theme=dark] .code pre .tk-sh { color: #E6DB74 } /* Literal.String.Heredoc */
+:root[data-theme=dark] .code pre .tk-si { color: #E6DB74 } /* Literal.String.Interpol */
+:root[data-theme=dark] .code pre .tk-sx { color: #E6DB74 } /* Literal.String.Other */
+:root[data-theme=dark] .code pre .tk-sr { color: #E6DB74 } /* Literal.String.Regex */
+:root[data-theme=dark] .code pre .tk-s1 { color: #E6DB74 } /* Literal.String.Single */
+:root[data-theme=dark] .code pre .tk-ss { color: #E6DB74 } /* Literal.String.Symbol */
+:root[data-theme=dark] .code pre .tk-bp { color: #F8F8F2 } /* Name.Builtin.Pseudo */
+:root[data-theme=dark] .code pre .tk-fm { color: #A6E22E } /* Name.Function.Magic */
+:root[data-theme=dark] .code pre .tk-vc { color: #F8F8F2 } /* Name.Variable.Class */
+:root[data-theme=dark] .code pre .tk-vg { color: #F8F8F2 } /* Name.Variable.Global */
+:root[data-theme=dark] .code pre .tk-vi { color: #F8F8F2 } /* Name.Variable.Instance */
+:root[data-theme=dark] .code pre .tk-vm { color: #F8F8F2 } /* Name.Variable.Magic */
+:root[data-theme=dark] .code pre .tk-il { color: #AE81FF } /* Literal.Number.Integer.Long */</style>
+<link rel="icon" href="../favicon.ico" sizes="32x32">
+<link rel="icon" type="image/svg+xml" href="../logo.svg">
+<link rel="apple-touch-icon" href="../apple-touch-icon.png">
+<meta name="theme-color" content="#2563eb">
+</head>
+<body>
+<header class="hd"><button class="t ticon" id="menu" type="button" aria-label="Open contents" aria-expanded="false"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><a class="brand" href="../index.html"><img src="../logo.svg" alt="" width="26" height="26"><span>C++ DSA Notes</span></a><a class="hl" href="../notes_advanced.html">All on one page</a><span class="sp"></span><div class="gsw"><input id="gs" type="search" placeholder="Search all notes…  ( / )" aria-label="Search all notes" autocomplete="off"><div id="gsr" hidden></div></div><button class="t ticon theme-btn" type="button"></button></header><div class="scrim" id="scrim"></div>
+<div class="layout">
+<aside>
+<h2>Advanced notes</h2>
+<div id="nav"><a class="s" href="../advanced/01-advanced-graph-algorithms.html" data-id="a1"><span class="ico"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="19" r="3" /><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15" /><circle cx="18" cy="5" r="3" /></svg></span><span class="n">1</span><span>Advanced graph algorithms</span><span class="chk"></span></a>
+<a class="s" href="../advanced/02-advanced-data-structures.html" data-id="a2"><span class="ico"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z" /><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12" /><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17" /></svg></span><span class="n">2</span><span>Advanced data structures</span><span class="chk"></span></a>
+<a class="s" href="../advanced/03-advanced-dynamic-programming.html" data-id="a3"><span class="ico"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" /><path d="M9 13a4.5 4.5 0 0 0 3-4" /><path d="M6.003 5.125A3 3 0 0 0 6.401 6.5" /><path d="M3.477 10.896a4 4 0 0 1 .585-.396" /><path d="M6 18a4 4 0 0 1-1.967-.516" /><path d="M12 13h4" /><path d="M12 18h6a2 2 0 0 1 2 2v1" /><path d="M12 8h8" /><path d="M16 8V5a2 2 0 0 1 2-2" /><circle cx="16" cy="13" r=".5" /><circle cx="18" cy="3" r=".5" /><circle cx="20" cy="21" r=".5" /><circle cx="20" cy="8" r=".5" /></svg></span><span class="n">3</span><span>Advanced dynamic programming</span><span class="chk"></span></a>
+<a class="s" href="../advanced/04-advanced-string-algorithms.html" data-id="a4"><span class="ico"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2" /><path d="M17 3h2a2 2 0 0 1 2 2v2" /><path d="M21 17v2a2 2 0 0 1-2 2h-2" /><path d="M7 21H5a2 2 0 0 1-2-2v-2" /><path d="M7 8h8" /><path d="M7 12h10" /><path d="M7 16h6" /></svg></span><span class="n">4</span><span>Advanced string algorithms</span><span class="chk"></span></a>
+<a class="s" href="../advanced/05-advanced-math.html" data-id="a5"><span class="ico"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="9" x2="9" y1="4" y2="20" /><path d="M4 7c0-1.7 1.3-3 3-3h13" /><path d="M18 20c-1.7 0-3-1.3-3-3V4" /></svg></span><span class="n">5</span><span>Advanced math</span><span class="chk"></span></a>
+<a class="s" href="../advanced/06-game-theory-computational-geometry.html" data-id="a6"><span class="ico"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.3 10a.7.7 0 0 1-.626-1.079L11.4 3a.7.7 0 0 1 1.198-.043L16.3 8.9a.7.7 0 0 1-.572 1.1Z" /><rect x="3" y="14" width="7" height="7" rx="1" /><circle cx="17.5" cy="17.5" r="3.5" /></svg></span><span class="n">6</span><span>Game theory &amp; computational geometry</span><span class="chk"></span></a>
+<a class="s" href="../advanced/07-theory-analysis-proofs.html" data-id="a7"><span class="ico"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /><path d="M22 10v6" /><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></svg></span><span class="n">7</span><span>Theory, analysis &amp; proofs</span><span class="chk"></span></a>
+<a class="s active" href="../advanced/08-interview-placement-toolkit.html" data-id="a8"><span class="ico"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /><rect width="20" height="14" x="2" y="6" rx="2" /></svg></span><span class="n">8</span><span>Interview &amp; placement toolkit</span><span class="chk"></span></a>
+<div class="sub"><a href="#h-0-how-to-run-a-coding-round-works-for-oas-and-live-interviews">How to run a coding round (works for OAs and live interviews)</a><a href="#h-1-interview-style-definitions-leetcode">Interview-style definitions (LeetCode)</a><a href="#h-2-linked-list-classics">Linked list classics</a><a href="#h-3-binary-tree-classics">Binary tree classics</a><a href="#h-4-design-problems">Design problems</a><a href="#h-5-sorting-implementations-often-asked-verbatim">Sorting implementations (often asked verbatim)</a><a href="#h-6-pattern-typical-interview-problems">Pattern → typical interview problems</a></div>
+<a class="s" href="../advanced/09-practice-roadmap-resources.html" data-id="a9"><span class="ico"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" /><path d="M15 5.764v15" /><path d="M9 3.236v15" /></svg></span><span class="n">9</span><span>Practice roadmap &amp; resources</span><span class="chk"></span></a></div>
+<h2>Other</h2>
+<div class="top"><a href="../core/01-template-setup.html">Core notes →</a></div>
+</aside>
+<main class="sec">
+<div class="bar"><i id="barfill"></i></div>
+<div class="meta"><span>Advanced notes · section 8 of 9</span><span id="pmeta"></span></div>
+<article><h2><span class="hi"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" /><rect width="20" height="14" x="2" y="6" rx="2" /></svg></span> 8. Interview &amp; placement toolkit</h2>
+<h3 id="h-0-how-to-run-a-coding-round-works-for-oas-and-live-interviews">How to run a coding round (works for OAs and live interviews)</h3>
+<ol>
+<li><strong>Clarify:</strong> input size/range, duplicates, negatives, empty input, sorted or not, one query or many, memory limit, output format.</li>
+<li><strong>Examples:</strong> walk a small case and one edge case by hand; state expected output.</li>
+<li><strong>Brute force first</strong> (say its complexity), then find the bottleneck and name the technique that removes it.</li>
+<li><strong>State the plan</strong> in 2–3 sentences before typing (data structures + invariant).</li>
+<li><strong>Code cleanly:</strong> meaningful names, small helper functions, no premature optimisation.</li>
+<li><strong>Test aloud</strong> on the examples + edge cases; trace the code, not what you intended.</li>
+<li><strong>State time &amp; space complexity</strong>, then offer improvements/trade-offs.</li>
+<li>If stuck: simplify (smaller constraints), draw, ask for a hint, write the brute force and optimise, don't go silent.</li>
+</ol>
+<div class="alert tip"><div class="alert-title"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" /><path d="M9 18h6" /><path d="M10 22h4" /></svg> Tip</div><p><strong>Online assessments:</strong> read all problems first, solve easiest first, keep ~10% time for re-checking, aim for partial credit (brute force passes some tests), keep a pre-written template with fast I/O, watch for integer overflow and <code>long long</code>, and check whether the function signature or <code>main</code> + stdin is expected.</p>
+</div>
+<h3 id="h-1-interview-style-definitions-leetcode">Interview-style definitions (LeetCode)</h3>
+<div class="code"><span class="lang">cpp</span><button class="copy" type="button">Copy</button><pre><code><span class="tk-k">struct</span><span class="tk-w"> </span><span class="tk-nc">ListNode</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">    </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">val</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-n">ListNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">next</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-n">ListNode</span><span class="tk-p">(</span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">x</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-o">:</span><span class="tk-w"> </span><span class="tk-n">val</span><span class="tk-p">(</span><span class="tk-n">x</span><span class="tk-p">),</span><span class="tk-w"> </span><span class="tk-n">next</span><span class="tk-p">(</span><span class="tk-k">nullptr</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{}</span>
+<span class="tk-p">};</span>
+<span class="tk-k">struct</span><span class="tk-w"> </span><span class="tk-nc">TreeNode</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">    </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">val</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-n">TreeNode</span><span class="tk-w"> </span><span class="tk-o">*</span><span class="tk-n">left</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-o">*</span><span class="tk-n">right</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-n">TreeNode</span><span class="tk-p">(</span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">x</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-o">:</span><span class="tk-w"> </span><span class="tk-n">val</span><span class="tk-p">(</span><span class="tk-n">x</span><span class="tk-p">),</span><span class="tk-w"> </span><span class="tk-n">left</span><span class="tk-p">(</span><span class="tk-k">nullptr</span><span class="tk-p">),</span><span class="tk-w"> </span><span class="tk-n">right</span><span class="tk-p">(</span><span class="tk-k">nullptr</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{}</span>
+<span class="tk-p">};</span>
+</code></pre></div>
+<h3 id="h-2-linked-list-classics">Linked list classics</h3>
+<div class="code"><span class="lang">cpp</span><button class="copy" type="button">Copy</button><pre><code><span class="tk-n">ListNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-nf">reverseList</span><span class="tk-p">(</span><span class="tk-n">ListNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">h</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">    </span><span class="tk-n">ListNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">prev</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-k">nullptr</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-k">while</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">h</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">        </span><span class="tk-n">ListNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">nx</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">h</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-p">;</span>
+<span class="tk-w">        </span><span class="tk-n">h</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">prev</span><span class="tk-p">;</span>
+<span class="tk-w">        </span><span class="tk-n">prev</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">h</span><span class="tk-p">;</span>
+<span class="tk-w">        </span><span class="tk-n">h</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">nx</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-p">}</span>
+<span class="tk-w">    </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-n">prev</span><span class="tk-p">;</span>
+<span class="tk-p">}</span>
+<span class="tk-n">ListNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-nf">detectCycle</span><span class="tk-p">(</span><span class="tk-n">ListNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">h</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span><span class="tk-w">  </span><span class="tk-c1">// start of cycle</span>
+<span class="tk-w">    </span><span class="tk-n">ListNode</span><span class="tk-w"> </span><span class="tk-o">*</span><span class="tk-n">s</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">h</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-o">*</span><span class="tk-n">f</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">h</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-k">while</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">f</span><span class="tk-w"> </span><span class="tk-o">&amp;&amp;</span><span class="tk-w"> </span><span class="tk-n">f</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">        </span><span class="tk-n">s</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">s</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-p">;</span>
+<span class="tk-w">        </span><span class="tk-n">f</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">f</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-p">;</span>
+<span class="tk-w">        </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">s</span><span class="tk-w"> </span><span class="tk-o">==</span><span class="tk-w"> </span><span class="tk-n">f</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">            </span><span class="tk-n">s</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">h</span><span class="tk-p">;</span>
+<span class="tk-w">            </span><span class="tk-k">while</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">s</span><span class="tk-w"> </span><span class="tk-o">!=</span><span class="tk-w"> </span><span class="tk-n">f</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">                </span><span class="tk-n">s</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">s</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-p">;</span>
+<span class="tk-w">                </span><span class="tk-n">f</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">f</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-p">;</span>
+<span class="tk-w">            </span><span class="tk-p">}</span>
+<span class="tk-w">            </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-n">s</span><span class="tk-p">;</span>
+<span class="tk-w">        </span><span class="tk-p">}</span>
+<span class="tk-w">    </span><span class="tk-p">}</span>
+<span class="tk-w">    </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-k">nullptr</span><span class="tk-p">;</span>
+<span class="tk-p">}</span>
+<span class="tk-n">ListNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-nf">mergeTwo</span><span class="tk-p">(</span><span class="tk-n">ListNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">ListNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">b</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">    </span><span class="tk-n">ListNode</span><span class="tk-w"> </span><span class="tk-n">dummy</span><span class="tk-p">(</span><span class="tk-mi">0</span><span class="tk-p">),</span><span class="tk-w"> </span><span class="tk-o">*</span><span class="tk-n">t</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-o">&amp;</span><span class="tk-n">dummy</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-k">while</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">a</span><span class="tk-w"> </span><span class="tk-o">&amp;&amp;</span><span class="tk-w"> </span><span class="tk-n">b</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">        </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">a</span><span class="tk-o">-&gt;</span><span class="tk-n">val</span><span class="tk-w"> </span><span class="tk-o">&lt;</span><span class="tk-w"> </span><span class="tk-n">b</span><span class="tk-o">-&gt;</span><span class="tk-n">val</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">            </span><span class="tk-n">t</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">;</span>
+<span class="tk-w">            </span><span class="tk-n">a</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-p">;</span>
+<span class="tk-w">        </span><span class="tk-p">}</span><span class="tk-w"> </span><span class="tk-k">else</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">            </span><span class="tk-n">t</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">b</span><span class="tk-p">;</span>
+<span class="tk-w">            </span><span class="tk-n">b</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">b</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-p">;</span>
+<span class="tk-w">        </span><span class="tk-p">}</span>
+<span class="tk-w">        </span><span class="tk-n">t</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">t</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-p">}</span>
+<span class="tk-w">    </span><span class="tk-n">t</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-w"> </span><span class="tk-o">?</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-w"> </span><span class="tk-o">:</span><span class="tk-w"> </span><span class="tk-n">b</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-n">dummy</span><span class="tk-p">.</span><span class="tk-n">next</span><span class="tk-p">;</span>
+<span class="tk-p">}</span>
+<span class="tk-n">ListNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-nf">middle</span><span class="tk-p">(</span><span class="tk-n">ListNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">h</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">    </span><span class="tk-n">ListNode</span><span class="tk-w"> </span><span class="tk-o">*</span><span class="tk-n">s</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">h</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-o">*</span><span class="tk-n">f</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">h</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-k">while</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">f</span><span class="tk-w"> </span><span class="tk-o">&amp;&amp;</span><span class="tk-w"> </span><span class="tk-n">f</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">        </span><span class="tk-n">s</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">s</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-p">;</span>
+<span class="tk-w">        </span><span class="tk-n">f</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">f</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-p">}</span>
+<span class="tk-w">    </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-n">s</span><span class="tk-p">;</span>
+<span class="tk-p">}</span><span class="tk-w">  </span><span class="tk-c1">// second middle for even length</span>
+<span class="tk-n">ListNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-nf">removeNthFromEnd</span><span class="tk-p">(</span><span class="tk-n">ListNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">h</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">n</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">    </span><span class="tk-n">ListNode</span><span class="tk-w"> </span><span class="tk-n">d</span><span class="tk-p">(</span><span class="tk-mi">0</span><span class="tk-p">);</span>
+<span class="tk-w">    </span><span class="tk-n">d</span><span class="tk-p">.</span><span class="tk-n">next</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">h</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-n">ListNode</span><span class="tk-w"> </span><span class="tk-o">*</span><span class="tk-n">a</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-o">&amp;</span><span class="tk-n">d</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-o">*</span><span class="tk-n">b</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-o">&amp;</span><span class="tk-n">d</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-k">while</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">n</span><span class="tk-o">--</span><span class="tk-p">)</span>
+<span class="tk-w">        </span><span class="tk-n">b</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">b</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-k">while</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">b</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">        </span><span class="tk-n">a</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-p">;</span>
+<span class="tk-w">        </span><span class="tk-n">b</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">b</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-p">}</span>
+<span class="tk-w">    </span><span class="tk-n">a</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-o">-&gt;</span><span class="tk-n">next</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-n">d</span><span class="tk-p">.</span><span class="tk-n">next</span><span class="tk-p">;</span>
+<span class="tk-p">}</span>
+</code></pre></div>
+<ul>
+<li>Reverse in k-groups, palindrome list (reverse second half), add two numbers, copy list with random pointer (interleave nodes), intersection of two lists (two pointers switching heads), sort list (merge sort), reorder list, flatten multilevel list.</li>
+</ul>
+<h3 id="h-3-binary-tree-classics">Binary tree classics</h3>
+<div class="code"><span class="lang">cpp</span><button class="copy" type="button">Copy</button><pre><code><span class="tk-n">vector</span><span class="tk-o">&lt;</span><span class="tk-kt">int</span><span class="tk-o">&gt;</span><span class="tk-w"> </span><span class="tk-n">inorderIter</span><span class="tk-p">(</span><span class="tk-n">TreeNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">    </span><span class="tk-n">vector</span><span class="tk-o">&lt;</span><span class="tk-kt">int</span><span class="tk-o">&gt;</span><span class="tk-w"> </span><span class="tk-n">out</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-n">stack</span><span class="tk-o">&lt;</span><span class="tk-n">TreeNode</span><span class="tk-o">*&gt;</span><span class="tk-w"> </span><span class="tk-n">st</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-n">TreeNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">cur</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-k">while</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">cur</span><span class="tk-w"> </span><span class="tk-o">||</span><span class="tk-w"> </span><span class="tk-o">!</span><span class="tk-n">st</span><span class="tk-p">.</span><span class="tk-n">empty</span><span class="tk-p">())</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">        </span><span class="tk-k">while</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">cur</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">            </span><span class="tk-n">st</span><span class="tk-p">.</span><span class="tk-n">push</span><span class="tk-p">(</span><span class="tk-n">cur</span><span class="tk-p">);</span>
+<span class="tk-w">            </span><span class="tk-n">cur</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">cur</span><span class="tk-o">-&gt;</span><span class="tk-n">left</span><span class="tk-p">;</span>
+<span class="tk-w">        </span><span class="tk-p">}</span>
+<span class="tk-w">        </span><span class="tk-n">cur</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">st</span><span class="tk-p">.</span><span class="tk-n">top</span><span class="tk-p">();</span>
+<span class="tk-w">        </span><span class="tk-n">st</span><span class="tk-p">.</span><span class="tk-n">pop</span><span class="tk-p">();</span>
+<span class="tk-w">        </span><span class="tk-n">out</span><span class="tk-p">.</span><span class="tk-n">push_back</span><span class="tk-p">(</span><span class="tk-n">cur</span><span class="tk-o">-&gt;</span><span class="tk-n">val</span><span class="tk-p">);</span>
+<span class="tk-w">        </span><span class="tk-n">cur</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">cur</span><span class="tk-o">-&gt;</span><span class="tk-n">right</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-p">}</span>
+<span class="tk-w">    </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-n">out</span><span class="tk-p">;</span>
+<span class="tk-p">}</span>
+<span class="tk-n">vector</span><span class="tk-o">&lt;</span><span class="tk-n">vector</span><span class="tk-o">&lt;</span><span class="tk-kt">int</span><span class="tk-o">&gt;&gt;</span><span class="tk-w"> </span><span class="tk-n">levelOrder</span><span class="tk-p">(</span><span class="tk-n">TreeNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">    </span><span class="tk-n">vector</span><span class="tk-o">&lt;</span><span class="tk-n">vector</span><span class="tk-o">&lt;</span><span class="tk-kt">int</span><span class="tk-o">&gt;&gt;</span><span class="tk-w"> </span><span class="tk-n">res</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-o">!</span><span class="tk-n">r</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-n">res</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-n">queue</span><span class="tk-o">&lt;</span><span class="tk-n">TreeNode</span><span class="tk-o">*&gt;</span><span class="tk-w"> </span><span class="tk-n">q</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-n">q</span><span class="tk-p">.</span><span class="tk-n">push</span><span class="tk-p">(</span><span class="tk-n">r</span><span class="tk-p">);</span>
+<span class="tk-w">    </span><span class="tk-k">while</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-o">!</span><span class="tk-n">q</span><span class="tk-p">.</span><span class="tk-n">empty</span><span class="tk-p">())</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">        </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">k</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">q</span><span class="tk-p">.</span><span class="tk-n">size</span><span class="tk-p">();</span>
+<span class="tk-w">        </span><span class="tk-n">res</span><span class="tk-p">.</span><span class="tk-n">push_back</span><span class="tk-p">({});</span>
+<span class="tk-w">        </span><span class="tk-k">while</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">k</span><span class="tk-o">--</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">            </span><span class="tk-n">TreeNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">u</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">q</span><span class="tk-p">.</span><span class="tk-n">front</span><span class="tk-p">();</span>
+<span class="tk-w">            </span><span class="tk-n">q</span><span class="tk-p">.</span><span class="tk-n">pop</span><span class="tk-p">();</span>
+<span class="tk-w">            </span><span class="tk-n">res</span><span class="tk-p">.</span><span class="tk-n">back</span><span class="tk-p">().</span><span class="tk-n">push_back</span><span class="tk-p">(</span><span class="tk-n">u</span><span class="tk-o">-&gt;</span><span class="tk-n">val</span><span class="tk-p">);</span>
+<span class="tk-w">            </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">u</span><span class="tk-o">-&gt;</span><span class="tk-n">left</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-n">q</span><span class="tk-p">.</span><span class="tk-n">push</span><span class="tk-p">(</span><span class="tk-n">u</span><span class="tk-o">-&gt;</span><span class="tk-n">left</span><span class="tk-p">);</span>
+<span class="tk-w">            </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">u</span><span class="tk-o">-&gt;</span><span class="tk-n">right</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-n">q</span><span class="tk-p">.</span><span class="tk-n">push</span><span class="tk-p">(</span><span class="tk-n">u</span><span class="tk-o">-&gt;</span><span class="tk-n">right</span><span class="tk-p">);</span>
+<span class="tk-w">        </span><span class="tk-p">}</span>
+<span class="tk-w">    </span><span class="tk-p">}</span>
+<span class="tk-w">    </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-n">res</span><span class="tk-p">;</span>
+<span class="tk-p">}</span>
+<span class="tk-n">TreeNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">lca</span><span class="tk-p">(</span><span class="tk-n">TreeNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">TreeNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">p</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">TreeNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">q</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">    </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-o">!</span><span class="tk-n">r</span><span class="tk-w"> </span><span class="tk-o">||</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-w"> </span><span class="tk-o">==</span><span class="tk-w"> </span><span class="tk-n">p</span><span class="tk-w"> </span><span class="tk-o">||</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-w"> </span><span class="tk-o">==</span><span class="tk-w"> </span><span class="tk-n">q</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-n">TreeNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">lca</span><span class="tk-p">(</span><span class="tk-n">r</span><span class="tk-o">-&gt;</span><span class="tk-n">left</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">p</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">q</span><span class="tk-p">);</span>
+<span class="tk-w">    </span><span class="tk-n">TreeNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">rr</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">lca</span><span class="tk-p">(</span><span class="tk-n">r</span><span class="tk-o">-&gt;</span><span class="tk-n">right</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">p</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">q</span><span class="tk-p">);</span>
+<span class="tk-w">    </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-w"> </span><span class="tk-o">&amp;&amp;</span><span class="tk-w"> </span><span class="tk-n">rr</span><span class="tk-w"> </span><span class="tk-o">?</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-w"> </span><span class="tk-o">:</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">l</span><span class="tk-w"> </span><span class="tk-o">?</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-w"> </span><span class="tk-o">:</span><span class="tk-w"> </span><span class="tk-n">rr</span><span class="tk-p">);</span>
+<span class="tk-p">}</span>
+<span class="tk-kt">bool</span><span class="tk-w"> </span><span class="tk-n">isValidBST</span><span class="tk-p">(</span><span class="tk-n">TreeNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-kt">long</span><span class="tk-w"> </span><span class="tk-kt">long</span><span class="tk-w"> </span><span class="tk-n">lo</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">LLONG_MIN</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-kt">long</span><span class="tk-w"> </span><span class="tk-kt">long</span><span class="tk-w"> </span><span class="tk-n">hi</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">LLONG_MAX</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">    </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-o">!</span><span class="tk-n">r</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-nb">true</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">r</span><span class="tk-o">-&gt;</span><span class="tk-n">val</span><span class="tk-w"> </span><span class="tk-o">&lt;=</span><span class="tk-w"> </span><span class="tk-n">lo</span><span class="tk-w"> </span><span class="tk-o">||</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-o">-&gt;</span><span class="tk-n">val</span><span class="tk-w"> </span><span class="tk-o">&gt;=</span><span class="tk-w"> </span><span class="tk-n">hi</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-nb">false</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-n">isValidBST</span><span class="tk-p">(</span><span class="tk-n">r</span><span class="tk-o">-&gt;</span><span class="tk-n">left</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">lo</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-o">-&gt;</span><span class="tk-n">val</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-o">&amp;&amp;</span><span class="tk-w"> </span><span class="tk-n">isValidBST</span><span class="tk-p">(</span><span class="tk-n">r</span><span class="tk-o">-&gt;</span><span class="tk-n">right</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-o">-&gt;</span><span class="tk-n">val</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">hi</span><span class="tk-p">);</span>
+<span class="tk-p">}</span>
+<span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">maxPathSum</span><span class="tk-p">(</span><span class="tk-n">TreeNode</span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-kt">int</span><span class="tk-o">&amp;</span><span class="tk-w"> </span><span class="tk-n">best</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">    </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-o">!</span><span class="tk-n">r</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-mi">0</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">max</span><span class="tk-p">(</span><span class="tk-mi">0</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">maxPathSum</span><span class="tk-p">(</span><span class="tk-n">r</span><span class="tk-o">-&gt;</span><span class="tk-n">left</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">best</span><span class="tk-p">)),</span><span class="tk-w"> </span><span class="tk-n">rr</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">max</span><span class="tk-p">(</span><span class="tk-mi">0</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">maxPathSum</span><span class="tk-p">(</span><span class="tk-n">r</span><span class="tk-o">-&gt;</span><span class="tk-n">right</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">best</span><span class="tk-p">));</span>
+<span class="tk-w">    </span><span class="tk-n">best</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">max</span><span class="tk-p">(</span><span class="tk-n">best</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-w"> </span><span class="tk-o">+</span><span class="tk-w"> </span><span class="tk-n">rr</span><span class="tk-w"> </span><span class="tk-o">+</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-o">-&gt;</span><span class="tk-n">val</span><span class="tk-p">);</span>
+<span class="tk-w">    </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-n">max</span><span class="tk-p">(</span><span class="tk-n">l</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">rr</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-o">+</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-o">-&gt;</span><span class="tk-n">val</span><span class="tk-p">;</span>
+<span class="tk-p">}</span><span class="tk-w">  </span><span class="tk-c1">// best init INT_MIN</span>
+</code></pre></div>
+<ul>
+<li>Also: diameter, balanced check, symmetric tree, path sum I/II/III (prefix sums on root paths), build tree from preorder+inorder, serialize/deserialize (preorder with <code>#</code>), flatten to linked list, right-side view, zigzag order, BST iterator, kth smallest in BST, morris traversal, successor in BST, recover swapped BST nodes.</li>
+</ul>
+<h3 id="h-4-design-problems">Design problems</h3>
+<div class="code"><span class="lang">cpp</span><button class="copy" type="button">Copy</button><pre><code><span class="tk-c1">// LRU cache: O(1) get/put with list + unordered_map</span>
+<span class="tk-k">class</span><span class="tk-w"> </span><span class="tk-nc">LRUCache</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">    </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">cap</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-n">list</span><span class="tk-o">&lt;</span><span class="tk-n">pair</span><span class="tk-o">&lt;</span><span class="tk-kt">int</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-kt">int</span><span class="tk-o">&gt;&gt;</span><span class="tk-w"> </span><span class="tk-n">lst</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-n">unordered_map</span><span class="tk-o">&lt;</span><span class="tk-kt">int</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">list</span><span class="tk-o">&lt;</span><span class="tk-n">pair</span><span class="tk-o">&lt;</span><span class="tk-kt">int</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-kt">int</span><span class="tk-o">&gt;&gt;::</span><span class="tk-n">iterator</span><span class="tk-o">&gt;</span><span class="tk-w"> </span><span class="tk-n">mp</span><span class="tk-p">;</span>
+
+<span class="tk-k">public</span><span class="tk-o">:</span>
+<span class="tk-w">    </span><span class="tk-n">LRUCache</span><span class="tk-p">(</span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">c</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-o">:</span><span class="tk-w"> </span><span class="tk-n">cap</span><span class="tk-p">(</span><span class="tk-n">c</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{}</span>
+<span class="tk-w">    </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">get</span><span class="tk-p">(</span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">k</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">        </span><span class="tk-k">auto</span><span class="tk-w"> </span><span class="tk-n">it</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">mp</span><span class="tk-p">.</span><span class="tk-n">find</span><span class="tk-p">(</span><span class="tk-n">k</span><span class="tk-p">);</span>
+<span class="tk-w">        </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">it</span><span class="tk-w"> </span><span class="tk-o">==</span><span class="tk-w"> </span><span class="tk-n">mp</span><span class="tk-p">.</span><span class="tk-n">end</span><span class="tk-p">())</span><span class="tk-w"> </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-mi">-1</span><span class="tk-p">;</span>
+<span class="tk-w">        </span><span class="tk-n">lst</span><span class="tk-p">.</span><span class="tk-n">splice</span><span class="tk-p">(</span><span class="tk-n">lst</span><span class="tk-p">.</span><span class="tk-n">begin</span><span class="tk-p">(),</span><span class="tk-w"> </span><span class="tk-n">lst</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">it</span><span class="tk-o">-&gt;</span><span class="tk-n">second</span><span class="tk-p">);</span>
+<span class="tk-w">        </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-n">it</span><span class="tk-o">-&gt;</span><span class="tk-n">second</span><span class="tk-o">-&gt;</span><span class="tk-n">second</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-p">}</span>
+<span class="tk-w">    </span><span class="tk-kt">void</span><span class="tk-w"> </span><span class="tk-n">put</span><span class="tk-p">(</span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">k</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">v</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">        </span><span class="tk-k">auto</span><span class="tk-w"> </span><span class="tk-n">it</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">mp</span><span class="tk-p">.</span><span class="tk-n">find</span><span class="tk-p">(</span><span class="tk-n">k</span><span class="tk-p">);</span>
+<span class="tk-w">        </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">it</span><span class="tk-w"> </span><span class="tk-o">!=</span><span class="tk-w"> </span><span class="tk-n">mp</span><span class="tk-p">.</span><span class="tk-n">end</span><span class="tk-p">())</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">            </span><span class="tk-n">it</span><span class="tk-o">-&gt;</span><span class="tk-n">second</span><span class="tk-o">-&gt;</span><span class="tk-n">second</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">v</span><span class="tk-p">;</span>
+<span class="tk-w">            </span><span class="tk-n">lst</span><span class="tk-p">.</span><span class="tk-n">splice</span><span class="tk-p">(</span><span class="tk-n">lst</span><span class="tk-p">.</span><span class="tk-n">begin</span><span class="tk-p">(),</span><span class="tk-w"> </span><span class="tk-n">lst</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">it</span><span class="tk-o">-&gt;</span><span class="tk-n">second</span><span class="tk-p">);</span>
+<span class="tk-w">            </span><span class="tk-k">return</span><span class="tk-p">;</span>
+<span class="tk-w">        </span><span class="tk-p">}</span>
+<span class="tk-w">        </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">((</span><span class="tk-kt">int</span><span class="tk-p">)</span><span class="tk-n">lst</span><span class="tk-p">.</span><span class="tk-n">size</span><span class="tk-p">()</span><span class="tk-w"> </span><span class="tk-o">==</span><span class="tk-w"> </span><span class="tk-n">cap</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">            </span><span class="tk-n">mp</span><span class="tk-p">.</span><span class="tk-n">erase</span><span class="tk-p">(</span><span class="tk-n">lst</span><span class="tk-p">.</span><span class="tk-n">back</span><span class="tk-p">().</span><span class="tk-n">first</span><span class="tk-p">);</span>
+<span class="tk-w">            </span><span class="tk-n">lst</span><span class="tk-p">.</span><span class="tk-n">pop_back</span><span class="tk-p">();</span>
+<span class="tk-w">        </span><span class="tk-p">}</span>
+<span class="tk-w">        </span><span class="tk-n">lst</span><span class="tk-p">.</span><span class="tk-n">emplace_front</span><span class="tk-p">(</span><span class="tk-n">k</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">v</span><span class="tk-p">);</span>
+<span class="tk-w">        </span><span class="tk-n">mp</span><span class="tk-p">[</span><span class="tk-n">k</span><span class="tk-p">]</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">lst</span><span class="tk-p">.</span><span class="tk-n">begin</span><span class="tk-p">();</span>
+<span class="tk-w">    </span><span class="tk-p">}</span>
+<span class="tk-p">};</span>
+<span class="tk-c1">// Min stack: stack of (value, min so far)</span>
+<span class="tk-k">struct</span><span class="tk-w"> </span><span class="tk-nc">MinStack</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">    </span><span class="tk-n">vector</span><span class="tk-o">&lt;</span><span class="tk-n">pair</span><span class="tk-o">&lt;</span><span class="tk-kt">int</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-kt">int</span><span class="tk-o">&gt;&gt;</span><span class="tk-w"> </span><span class="tk-n">s</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-kt">void</span><span class="tk-w"> </span><span class="tk-nf">push</span><span class="tk-p">(</span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">x</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span><span class="tk-w"> </span><span class="tk-n">s</span><span class="tk-p">.</span><span class="tk-n">push_back</span><span class="tk-p">({</span><span class="tk-n">x</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">s</span><span class="tk-p">.</span><span class="tk-n">empty</span><span class="tk-p">()</span><span class="tk-w"> </span><span class="tk-o">?</span><span class="tk-w"> </span><span class="tk-n">x</span><span class="tk-w"> </span><span class="tk-o">:</span><span class="tk-w"> </span><span class="tk-n">min</span><span class="tk-p">(</span><span class="tk-n">x</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">s</span><span class="tk-p">.</span><span class="tk-n">back</span><span class="tk-p">().</span><span class="tk-n">second</span><span class="tk-p">)});</span><span class="tk-w"> </span><span class="tk-p">}</span>
+<span class="tk-w">    </span><span class="tk-kt">void</span><span class="tk-w"> </span><span class="tk-nf">pop</span><span class="tk-p">()</span><span class="tk-w"> </span><span class="tk-p">{</span><span class="tk-w"> </span><span class="tk-n">s</span><span class="tk-p">.</span><span class="tk-n">pop_back</span><span class="tk-p">();</span><span class="tk-w"> </span><span class="tk-p">}</span>
+<span class="tk-w">    </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-nf">top</span><span class="tk-p">()</span><span class="tk-w"> </span><span class="tk-p">{</span><span class="tk-w"> </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-n">s</span><span class="tk-p">.</span><span class="tk-n">back</span><span class="tk-p">().</span><span class="tk-n">first</span><span class="tk-p">;</span><span class="tk-w"> </span><span class="tk-p">}</span>
+<span class="tk-w">    </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-nf">getMin</span><span class="tk-p">()</span><span class="tk-w"> </span><span class="tk-p">{</span><span class="tk-w"> </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-n">s</span><span class="tk-p">.</span><span class="tk-n">back</span><span class="tk-p">().</span><span class="tk-n">second</span><span class="tk-p">;</span><span class="tk-w"> </span><span class="tk-p">}</span>
+<span class="tk-p">};</span>
+</code></pre></div>
+<ul>
+<li><strong>LFU:</strong> map <code>key → (value, freq)</code> + map <code>freq → list of keys</code> + <code>minFreq</code>. <strong>Trie:</strong> insert/search/prefix (<a href="../core/17-trees-advanced-data-structures.html">section 17</a>). <strong>Two stacks → queue</strong>, <strong>queue via two stacks amortized O(1)</strong>, <strong>median of stream (two heaps)</strong>, <strong>randomized set (vector + index map, swap-with-last erase)</strong>, <strong>time-based key-value store (<code>map&lt;time,value&gt;</code> + <code>upper_bound</code>)</strong>, <strong>rate limiter (sliding window/token bucket)</strong>, <strong>iterator design</strong>, <strong>hit counter</strong>, <strong>Twitter feed (merge k lists by time)</strong>, <strong>autocomplete (trie + top-k)</strong>.</li>
+</ul>
+<h3 id="h-5-sorting-implementations-often-asked-verbatim">Sorting implementations (often asked verbatim)</h3>
+<div class="code"><span class="lang">cpp</span><button class="copy" type="button">Copy</button><pre><code><span class="tk-kt">void</span><span class="tk-w"> </span><span class="tk-nf">mergeSort</span><span class="tk-p">(</span><span class="tk-n">vector</span><span class="tk-o">&lt;</span><span class="tk-kt">int</span><span class="tk-o">&gt;&amp;</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">vector</span><span class="tk-o">&lt;</span><span class="tk-kt">int</span><span class="tk-o">&gt;&amp;</span><span class="tk-w"> </span><span class="tk-n">tmp</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span><span class="tk-w">  </span><span class="tk-c1">// [l, r)</span>
+<span class="tk-w">    </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">r</span><span class="tk-w"> </span><span class="tk-o">-</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-w"> </span><span class="tk-o">&lt;</span><span class="tk-w"> </span><span class="tk-mi">2</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-k">return</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">m</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">l</span><span class="tk-w"> </span><span class="tk-o">+</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-o">/</span><span class="tk-w"> </span><span class="tk-mi">2</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-n">mergeSort</span><span class="tk-p">(</span><span class="tk-n">a</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">tmp</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">m</span><span class="tk-p">);</span>
+<span class="tk-w">    </span><span class="tk-n">mergeSort</span><span class="tk-p">(</span><span class="tk-n">a</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">tmp</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">m</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">);</span>
+<span class="tk-w">    </span><span class="tk-n">merge</span><span class="tk-p">(</span><span class="tk-n">a</span><span class="tk-p">.</span><span class="tk-n">begin</span><span class="tk-p">()</span><span class="tk-w"> </span><span class="tk-o">+</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">.</span><span class="tk-n">begin</span><span class="tk-p">()</span><span class="tk-w"> </span><span class="tk-o">+</span><span class="tk-w"> </span><span class="tk-n">m</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">.</span><span class="tk-n">begin</span><span class="tk-p">()</span><span class="tk-w"> </span><span class="tk-o">+</span><span class="tk-w"> </span><span class="tk-n">m</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">.</span><span class="tk-n">begin</span><span class="tk-p">()</span><span class="tk-w"> </span><span class="tk-o">+</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">tmp</span><span class="tk-p">.</span><span class="tk-n">begin</span><span class="tk-p">()</span><span class="tk-w"> </span><span class="tk-o">+</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-p">);</span>
+<span class="tk-w">    </span><span class="tk-n">copy</span><span class="tk-p">(</span><span class="tk-n">tmp</span><span class="tk-p">.</span><span class="tk-n">begin</span><span class="tk-p">()</span><span class="tk-w"> </span><span class="tk-o">+</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">tmp</span><span class="tk-p">.</span><span class="tk-n">begin</span><span class="tk-p">()</span><span class="tk-w"> </span><span class="tk-o">+</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">.</span><span class="tk-n">begin</span><span class="tk-p">()</span><span class="tk-w"> </span><span class="tk-o">+</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-p">);</span>
+<span class="tk-p">}</span>
+<span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-nf">partitionLomuto</span><span class="tk-p">(</span><span class="tk-n">vector</span><span class="tk-o">&lt;</span><span class="tk-kt">int</span><span class="tk-o">&gt;&amp;</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">    </span><span class="tk-n">swap</span><span class="tk-p">(</span><span class="tk-n">a</span><span class="tk-p">[</span><span class="tk-n">l</span><span class="tk-w"> </span><span class="tk-o">+</span><span class="tk-w"> </span><span class="tk-n">rand</span><span class="tk-p">()</span><span class="tk-w"> </span><span class="tk-o">%</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">r</span><span class="tk-w"> </span><span class="tk-o">-</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-w"> </span><span class="tk-o">+</span><span class="tk-w"> </span><span class="tk-mi">1</span><span class="tk-p">)],</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">[</span><span class="tk-n">r</span><span class="tk-p">]);</span>
+<span class="tk-w">    </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">p</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">[</span><span class="tk-n">r</span><span class="tk-p">],</span><span class="tk-w"> </span><span class="tk-n">i</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-k">for</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">j</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-p">;</span><span class="tk-w"> </span><span class="tk-n">j</span><span class="tk-w"> </span><span class="tk-o">&lt;</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">;</span><span class="tk-w"> </span><span class="tk-n">j</span><span class="tk-o">++</span><span class="tk-p">)</span>
+<span class="tk-w">        </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">a</span><span class="tk-p">[</span><span class="tk-n">j</span><span class="tk-p">]</span><span class="tk-w"> </span><span class="tk-o">&lt;</span><span class="tk-w"> </span><span class="tk-n">p</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-n">swap</span><span class="tk-p">(</span><span class="tk-n">a</span><span class="tk-p">[</span><span class="tk-n">i</span><span class="tk-o">++</span><span class="tk-p">],</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">[</span><span class="tk-n">j</span><span class="tk-p">]);</span>
+<span class="tk-w">    </span><span class="tk-n">swap</span><span class="tk-p">(</span><span class="tk-n">a</span><span class="tk-p">[</span><span class="tk-n">i</span><span class="tk-p">],</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">[</span><span class="tk-n">r</span><span class="tk-p">]);</span>
+<span class="tk-w">    </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-n">i</span><span class="tk-p">;</span>
+<span class="tk-p">}</span>
+<span class="tk-kt">void</span><span class="tk-w"> </span><span class="tk-nf">quickSort</span><span class="tk-p">(</span><span class="tk-n">vector</span><span class="tk-o">&lt;</span><span class="tk-kt">int</span><span class="tk-o">&gt;&amp;</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">    </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">l</span><span class="tk-w"> </span><span class="tk-o">&gt;=</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-k">return</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">p</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">partitionLomuto</span><span class="tk-p">(</span><span class="tk-n">a</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">);</span>
+<span class="tk-w">    </span><span class="tk-n">quickSort</span><span class="tk-p">(</span><span class="tk-n">a</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">p</span><span class="tk-w"> </span><span class="tk-o">-</span><span class="tk-w"> </span><span class="tk-mi">1</span><span class="tk-p">);</span>
+<span class="tk-w">    </span><span class="tk-n">quickSort</span><span class="tk-p">(</span><span class="tk-n">a</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">p</span><span class="tk-w"> </span><span class="tk-o">+</span><span class="tk-w"> </span><span class="tk-mi">1</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">);</span>
+<span class="tk-p">}</span>
+<span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-nf">quickselect</span><span class="tk-p">(</span><span class="tk-n">vector</span><span class="tk-o">&lt;</span><span class="tk-kt">int</span><span class="tk-o">&gt;</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">k</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span><span class="tk-w">  </span><span class="tk-c1">// k-th smallest, 0-indexed, expected O(n)</span>
+<span class="tk-w">    </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-mi">0</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">.</span><span class="tk-n">size</span><span class="tk-p">()</span><span class="tk-w"> </span><span class="tk-o">-</span><span class="tk-w"> </span><span class="tk-mi">1</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-k">while</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-nb">true</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">        </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">p</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">partitionLomuto</span><span class="tk-p">(</span><span class="tk-n">a</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">);</span>
+<span class="tk-w">        </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">p</span><span class="tk-w"> </span><span class="tk-o">==</span><span class="tk-w"> </span><span class="tk-n">k</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-k">return</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">[</span><span class="tk-n">p</span><span class="tk-p">];</span>
+<span class="tk-w">        </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">p</span><span class="tk-w"> </span><span class="tk-o">&lt;</span><span class="tk-w"> </span><span class="tk-n">k</span><span class="tk-p">)</span>
+<span class="tk-w">            </span><span class="tk-n">l</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">p</span><span class="tk-w"> </span><span class="tk-o">+</span><span class="tk-w"> </span><span class="tk-mi">1</span><span class="tk-p">;</span>
+<span class="tk-w">        </span><span class="tk-k">else</span>
+<span class="tk-w">            </span><span class="tk-n">r</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">p</span><span class="tk-w"> </span><span class="tk-o">-</span><span class="tk-w"> </span><span class="tk-mi">1</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-p">}</span>
+<span class="tk-p">}</span>
+<span class="tk-kt">void</span><span class="tk-w"> </span><span class="tk-nf">heapify</span><span class="tk-p">(</span><span class="tk-n">vector</span><span class="tk-o">&lt;</span><span class="tk-kt">int</span><span class="tk-o">&gt;&amp;</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">n</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">i</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">    </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">big</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">i</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-mi">2</span><span class="tk-w"> </span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">i</span><span class="tk-w"> </span><span class="tk-o">+</span><span class="tk-w"> </span><span class="tk-mi">1</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-mi">2</span><span class="tk-w"> </span><span class="tk-o">*</span><span class="tk-w"> </span><span class="tk-n">i</span><span class="tk-w"> </span><span class="tk-o">+</span><span class="tk-w"> </span><span class="tk-mi">2</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">l</span><span class="tk-w"> </span><span class="tk-o">&lt;</span><span class="tk-w"> </span><span class="tk-n">n</span><span class="tk-w"> </span><span class="tk-o">&amp;&amp;</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">[</span><span class="tk-n">l</span><span class="tk-p">]</span><span class="tk-w"> </span><span class="tk-o">&gt;</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">[</span><span class="tk-n">big</span><span class="tk-p">])</span><span class="tk-w"> </span><span class="tk-n">big</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">l</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">r</span><span class="tk-w"> </span><span class="tk-o">&lt;</span><span class="tk-w"> </span><span class="tk-n">n</span><span class="tk-w"> </span><span class="tk-o">&amp;&amp;</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">[</span><span class="tk-n">r</span><span class="tk-p">]</span><span class="tk-w"> </span><span class="tk-o">&gt;</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">[</span><span class="tk-n">big</span><span class="tk-p">])</span><span class="tk-w"> </span><span class="tk-n">big</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">r</span><span class="tk-p">;</span>
+<span class="tk-w">    </span><span class="tk-k">if</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-n">big</span><span class="tk-w"> </span><span class="tk-o">!=</span><span class="tk-w"> </span><span class="tk-n">i</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">        </span><span class="tk-n">swap</span><span class="tk-p">(</span><span class="tk-n">a</span><span class="tk-p">[</span><span class="tk-n">i</span><span class="tk-p">],</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">[</span><span class="tk-n">big</span><span class="tk-p">]);</span>
+<span class="tk-w">        </span><span class="tk-n">heapify</span><span class="tk-p">(</span><span class="tk-n">a</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">n</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">big</span><span class="tk-p">);</span>
+<span class="tk-w">    </span><span class="tk-p">}</span>
+<span class="tk-p">}</span>
+<span class="tk-kt">void</span><span class="tk-w"> </span><span class="tk-nf">heapSort</span><span class="tk-p">(</span><span class="tk-n">vector</span><span class="tk-o">&lt;</span><span class="tk-kt">int</span><span class="tk-o">&gt;&amp;</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">    </span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">n</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">.</span><span class="tk-n">size</span><span class="tk-p">();</span>
+<span class="tk-w">    </span><span class="tk-k">for</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">i</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">n</span><span class="tk-w"> </span><span class="tk-o">/</span><span class="tk-w"> </span><span class="tk-mi">2</span><span class="tk-w"> </span><span class="tk-o">-</span><span class="tk-w"> </span><span class="tk-mi">1</span><span class="tk-p">;</span><span class="tk-w"> </span><span class="tk-n">i</span><span class="tk-w"> </span><span class="tk-o">&gt;=</span><span class="tk-w"> </span><span class="tk-mi">0</span><span class="tk-p">;</span><span class="tk-w"> </span><span class="tk-n">i</span><span class="tk-o">--</span><span class="tk-p">)</span>
+<span class="tk-w">        </span><span class="tk-n">heapify</span><span class="tk-p">(</span><span class="tk-n">a</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">n</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">i</span><span class="tk-p">);</span>
+<span class="tk-w">    </span><span class="tk-k">for</span><span class="tk-w"> </span><span class="tk-p">(</span><span class="tk-kt">int</span><span class="tk-w"> </span><span class="tk-n">i</span><span class="tk-w"> </span><span class="tk-o">=</span><span class="tk-w"> </span><span class="tk-n">n</span><span class="tk-w"> </span><span class="tk-o">-</span><span class="tk-w"> </span><span class="tk-mi">1</span><span class="tk-p">;</span><span class="tk-w"> </span><span class="tk-n">i</span><span class="tk-w"> </span><span class="tk-o">&gt;</span><span class="tk-w"> </span><span class="tk-mi">0</span><span class="tk-p">;</span><span class="tk-w"> </span><span class="tk-n">i</span><span class="tk-o">--</span><span class="tk-p">)</span><span class="tk-w"> </span><span class="tk-p">{</span>
+<span class="tk-w">        </span><span class="tk-n">swap</span><span class="tk-p">(</span><span class="tk-n">a</span><span class="tk-p">[</span><span class="tk-mi">0</span><span class="tk-p">],</span><span class="tk-w"> </span><span class="tk-n">a</span><span class="tk-p">[</span><span class="tk-n">i</span><span class="tk-p">]);</span>
+<span class="tk-w">        </span><span class="tk-n">heapify</span><span class="tk-p">(</span><span class="tk-n">a</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-n">i</span><span class="tk-p">,</span><span class="tk-w"> </span><span class="tk-mi">0</span><span class="tk-p">);</span>
+<span class="tk-w">    </span><span class="tk-p">}</span>
+<span class="tk-p">}</span>
+</code></pre></div>
+<ul>
+<li>Binary search variants (first/last occurrence, rotated array, search in 2D matrix, sqrt, peak), Dutch flag (sort 0/1/2), merge intervals, next permutation, rotate array (three reversals), kth largest (heap/quickselect), majority element (Boyer–Moore), product except self (prefix/suffix), trapping rain water, container with most water, spiral matrix, set matrix zeroes, search a 2D sorted matrix (staircase search from corner).</li>
+</ul>
+<h3 id="h-6-pattern-typical-interview-problems">Pattern → typical interview problems</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>Pattern</th>
+<th>Problems</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Hash map / counting</td>
+<td>Two Sum, Group Anagrams, Subarray Sum Equals K, Longest Consecutive Sequence, Isomorphic Strings</td>
+</tr>
+<tr>
+<td>Two pointers</td>
+<td>3Sum, Container With Most Water, Remove Duplicates, Sort Colors, Trapping Rain Water</td>
+</tr>
+<tr>
+<td>Sliding window</td>
+<td>Longest Substring Without Repeating, Minimum Window Substring, Permutation in String, Sliding Window Maximum, Max Consecutive Ones III</td>
+</tr>
+<tr>
+<td>Stack / monotonic</td>
+<td>Valid Parentheses, Daily Temperatures, Next Greater Element, Largest Rectangle in Histogram, Decode String</td>
+</tr>
+<tr>
+<td>Binary search</td>
+<td>Search in Rotated Array, Find Peak, Koko Eating Bananas, Split Array Largest Sum, Median of Two Sorted Arrays</td>
+</tr>
+<tr>
+<td>Linked list</td>
+<td>Reverse List, Cycle II, Merge k Lists, Reorder List, Copy List with Random Pointer</td>
+</tr>
+<tr>
+<td>Tree DFS/BFS</td>
+<td>Max Depth, Level Order, LCA, Validate BST, Serialize/Deserialize, Max Path Sum</td>
+</tr>
+<tr>
+<td>Heap</td>
+<td>Kth Largest, Top K Frequent, Merge k Sorted Lists, Find Median from Data Stream, Task Scheduler</td>
+</tr>
+<tr>
+<td>Backtracking</td>
+<td>Subsets, Permutations, Combination Sum, N-Queens, Word Search, Sudoku Solver</td>
+</tr>
+<tr>
+<td>Graph</td>
+<td>Number of Islands, Clone Graph, Course Schedule, Word Ladder, Network Delay Time, Alien Dictionary</td>
+</tr>
+<tr>
+<td>DSU</td>
+<td>Redundant Connection, Accounts Merge, Number of Provinces</td>
+</tr>
+<tr>
+<td>DP 1D/2D</td>
+<td>Climbing Stairs, House Robber, Coin Change, LIS, Longest Palindromic Substring, Unique Paths, Edit Distance, Partition Equal Subset Sum</td>
+</tr>
+<tr>
+<td>Intervals</td>
+<td>Merge Intervals, Insert Interval, Meeting Rooms II, Non-overlapping Intervals</td>
+</tr>
+<tr>
+<td>Bit manipulation</td>
+<td>Single Number I/II/III, Counting Bits, Reverse Bits, Missing Number, Sum of Two Integers</td>
+</tr>
+<tr>
+<td>Trie</td>
+<td>Implement Trie, Word Search II, Design Add and Search Words</td>
+</tr>
+<tr>
+<td>Math</td>
+<td>Pow(x, n), Sqrt(x), Happy Number, Count Primes, Fizz Buzz variants</td>
+</tr>
+</tbody>
+</table></div>
+<div class="alert note"><div class="alert-title"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" /><path d="M12 16v-4" /><path d="M12 8h.01" /></svg> Note</div><p>Placement tests often also include <strong>aptitude, OS, DBMS (SQL), computer networks, OOP and system design basics</strong>. Those are outside this file; keep a separate sheet for them (SQL joins/group-by/window functions, normalisation, ACID, process vs thread, deadlock conditions, paging, TCP vs UDP, OOP pillars, SOLID).</p>
+</div>
+</article>
+<div class="donebox" id="donebox"><button id="done" type="button">✓ Mark section complete</button><span class="msg" id="msg">Finished reading and tried the code? Mark it done.</span></div>
+<div class="celebrate" id="celebrate"><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5.8 11.3 2 22l10.7-3.79" /><path d="M4 3h.01" /><path d="M22 8h.01" /><path d="M15 2h.01" /><path d="M22 20h.01" /><path d="m22 2-2.24.75a2.9 2.9 0 0 0-1.96 3.12c.1.86-.57 1.63-1.45 1.63h-.38c-.86 0-1.6.6-1.76 1.44L14 10" /><path d="m22 13-.82-.33c-.86-.34-1.82.2-1.98 1.11c-.11.7-.72 1.22-1.43 1.22H17" /><path d="m11 2 .33.82c.34.86-.2 1.82-1.11 1.98C9.52 4.9 9 5.52 9 6.23V7" /><path d="M11 13c1.93 1.93 2.83 4.17 2 5-.83.83-3.07-.07-5-2-1.93-1.93-2.83-4.17-2-5 .83-.83 3.07.07 5 2Z" /></svg> <b>Advanced notes complete!</b> Keep practising with the roadmap in the last section.</div>
+<nav class="pager"><a class="prev" href="07-theory-analysis-proofs.html"><small>← Previous</small><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" /><path d="M22 10v6" /><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" /></svg> 7. Theory, analysis &amp; proofs</a><a class="next" id="nextlink" href="09-practice-roadmap-resources.html"><small>Next →</small><svg class="i" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z" /><path d="M15 5.764v15" /><path d="M9 3.236v15" /></svg> 9. Practice roadmap &amp; resources</a></nav>
+<p class="hint">Tip: use the ← → keys, or swipe left/right on a touch screen, to move between sections.</p>
+</main>
+</div>
+<button id="top" type="button" aria-label="Back to top" title="Back to top">↑</button>
+<script>var SROOT="../";
+
+try{var th=localStorage.getItem('theme');if(th)document.documentElement.setAttribute('data-theme',th)}catch(e){}
+var SUN='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>';
+var MOON='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>';
+function curTheme(){return document.documentElement.getAttribute('data-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light')}
+var tbs=[].slice.call(document.querySelectorAll('.theme-btn'));
+function paintTheme(){var d=curTheme()==='dark';tbs.forEach(function(tb){tb.innerHTML=d?SUN:MOON;tb.title=d?'Switch to light mode':'Switch to dark mode';tb.setAttribute('aria-label',tb.title)})}
+tbs.forEach(function(tb){tb.onclick=function(){var n=curTheme()==='dark'?'light':'dark';document.documentElement.setAttribute('data-theme',n);try{localStorage.setItem('theme',n)}catch(e){}paintTheme()}});
+paintTheme();
+/* sidebar position across page loads: the clicked link reappears where it was; otherwise the current section is shown */
+(function(){
+  var asd=document.querySelector('aside');if(!asd)return;
+  var act=asd.querySelector('a.s.active'),pos=null;
+  try{pos=JSON.parse(sessionStorage.getItem('aside-pos')||'null');sessionStorage.removeItem('aside-pos')}catch(e){}
+  if(act){var ar=asd.getBoundingClientRect(),r=act.getBoundingClientRect();
+    if(pos&&pos.id===act.dataset.id)asd.scrollTop+=r.top-ar.top-pos.off;
+    else if(r.top<ar.top||r.bottom>ar.bottom)asd.scrollTop+=r.top-ar.top-ar.height/3}
+  asd.addEventListener('click',function(e){var l=e.target.closest&&e.target.closest('a.s');
+    if(!l||(l.getAttribute('href')||'').charAt(0)==='#')return;
+    try{sessionStorage.setItem('aside-pos',JSON.stringify({id:l.dataset.id,off:l.getBoundingClientRect().top-asd.getBoundingClientRect().top}))}catch(e){}});
+})();
+var mb=document.getElementById('menu');
+function setMenu(o){document.body.classList.toggle('menu-open',o);if(mb)mb.setAttribute('aria-expanded',o?'true':'false');
+  if(o){var a=document.querySelector('aside a.active');if(a)a.scrollIntoView({block:'center'})}}
+if(mb){mb.onclick=function(){setMenu(!document.body.classList.contains('menu-open'))};
+  var sc=document.getElementById('scrim');if(sc)sc.onclick=function(){setMenu(false)};
+  document.querySelectorAll('aside a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+  addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
+  matchMedia('(min-width: 901px)').addListener(function(m){if(m.matches)setMenu(false)})}
+document.querySelectorAll('.code .copy').forEach(function(b){b.addEventListener('click',function(){
+  var t=b.parentNode.querySelector('code').innerText;
+  (navigator.clipboard?navigator.clipboard.writeText(t):Promise.reject()).then(function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1200)},function(){b.textContent='Press Ctrl+C'})})});
+var topb=document.getElementById('top');
+if(topb){topb.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'})});
+  var tick=false;function vis(){tick=false;topb.classList.toggle('show',window.pageYOffset>500)}
+  addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(vis)}},{passive:true});vis()}
+/* one-time migration (schema 2): "Structs, classes & OOP" moved from core 21 to core 4, old core 4-20 became 5-21 */
+try{if(localStorage.getItem('dsa-schema')!=='2'){
+  var op=JSON.parse(localStorage.getItem('dsa-progress')||'{}'),np={};
+  for(var k in op){var m=/^c(\d+)$/.exec(k);if(m){var n=+m[1];n=n===21?4:(n>=4?n+1:n);np['c'+n]=op[k]}else np[k]=op[k]}
+  localStorage.setItem('dsa-progress',JSON.stringify(np));
+  var ol=localStorage.getItem('dsa-last'),lm=ol&&/^core\/(\d\d)-(.+)$/.exec(ol);
+  if(lm){var ln=lm[2]==='structs-classes-oop-essentials.html'?4:(+lm[1]>=4?+lm[1]+1:+lm[1]);localStorage.setItem('dsa-last','core/'+(ln<10?'0':'')+ln+'-'+lm[2])}
+  localStorage.setItem('dsa-schema','2')}}catch(e){}
+function getProg(){try{return JSON.parse(localStorage.getItem('dsa-progress')||'{}')}catch(e){return {}}}
+function setProg(p){try{localStorage.setItem('dsa-progress',JSON.stringify(p))}catch(e){}}
+
+
+(function(){
+var inp=document.getElementById('gs'),box=document.getElementById('gsr');if(!inp||!box)return;
+var data=null,loading=false,sel=-1;
+function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function rx(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}
+function load(){if(window.SEARCH){data=window.SEARCH;return run()}
+  if(loading)return;loading=true;var e=document.createElement('script');e.src=SROOT+'search-index.js';
+  e.onload=function(){data=window.SEARCH;run()};e.onerror=function(){loading=false;box.innerHTML='<p class="gs-empty">Search index not found. Run tools/build_site.py.</p>'};document.head.appendChild(e)}
+function run(){
+  var q=inp.value.trim().toLowerCase();sel=-1;
+  if(!q){box.hidden=true;return}
+  box.hidden=false;
+  if(!data){box.innerHTML='<p class="gs-empty">Loading…</p>';load();return}
+  var toks=q.split(/\s+/),res=[];
+  data.forEach(function(d){
+    var hl=d.h.toLowerCase(),tl=d.t.toLowerCase(),xl=d.x.toLowerCase(),sc=0;
+    for(var i=0;i<toks.length;i++){var k=toks[i],a=hl.indexOf(k)>-1,b=tl.indexOf(k)>-1,c=xl.indexOf(k)>-1;
+      if(!a&&!b&&!c)return;sc+=(a?20:0)+(b?5:0)+(c?1:0)}
+    res.push([sc,d])});
+  res.sort(function(x,y){return y[0]-x[0]});
+  if(!res.length){box.innerHTML='<p class="gs-empty">No matches for “'+esc(inp.value.trim())+'”.</p>';return}
+  var re=new RegExp('('+toks.map(function(t){return rx(esc(t))}).join('|')+')','gi');
+  box.innerHTML=res.slice(0,30).map(function(r){
+    var d=r[1],xl=d.x.toLowerCase(),p=-1;
+    for(var i=0;i<toks.length&&p<0;i++)p=xl.indexOf(toks[i]);
+    var from=Math.max(0,p-50),sn=(from>0?'…':'')+d.x.slice(from,from+160)+(from+160<d.x.length?'…':'');
+    return '<a href="'+SROOT+d.u+'"><b>'+esc(d.t)+(d.h?' › '+esc(d.h):'')+'</b><span>'+esc(sn).replace(re,'<mark>$1</mark>')+'</span></a>'}).join('')
+    +(res.length>30?'<p class="gs-empty">'+res.length+' matches, showing the best 30. Refine your search.</p>':'');
+}
+function mark(n){var as=box.querySelectorAll('a');if(!as.length)return;
+  if(as[sel])as[sel].classList.remove('sel');sel=(n+as.length)%as.length;as[sel].classList.add('sel');as[sel].scrollIntoView({block:'nearest'})}
+inp.addEventListener('input',run);
+inp.addEventListener('focus',function(){if(inp.value.trim())run(); else load()});
+inp.addEventListener('keydown',function(e){
+  if(e.key==='ArrowDown'){e.preventDefault();mark(sel+1)}
+  else if(e.key==='ArrowUp'){e.preventDefault();mark(sel-1)}
+  else if(e.key==='Enter'){var a=box.querySelectorAll('a')[sel<0?0:sel];if(a)location.href=a.href}
+  else if(e.key==='Escape'){inp.value='';box.hidden=true;inp.blur()}});
+document.addEventListener('click',function(e){if(!e.target.closest||!e.target.closest('.gsw'))box.hidden=true});
+addEventListener('keydown',function(e){
+  var t=(e.target||{}).tagName||'';
+  if((e.key==='/'&&!/INPUT|TEXTAREA|SELECT/.test(t))||((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='k')){e.preventDefault();
+    inp.focus();inp.select()}});
+})();
+
+
+var PART="a",ID="a8",IDS=["a1","a2","a3","a4","a5","a6","a7","a8","a9"],PATH="advanced/08-interview-placement-toolkit.html";
+function paint(){
+  var p=getProg(),done=IDS.filter(function(i){return p[i]}).length;
+  document.getElementById('barfill').style.width=(100*done/IDS.length)+'%';
+  document.getElementById('pmeta').textContent=done+' / '+IDS.length+' complete';
+  document.querySelectorAll('#nav a.s').forEach(function(a){a.classList.toggle('done',!!p[a.dataset.id])});
+  var d=!!p[ID],box=document.getElementById('donebox');
+  box.classList.toggle('is-done',d);
+  document.getElementById('done').textContent=d?'✓ Completed (click to undo)':'✓ Mark section complete';
+  document.getElementById('msg').textContent=d?(done===IDS.length?'Every section in this part is done.':(IDS.length-done)+' section'+(IDS.length-done===1?'':'s')+' left in this part.'):'Finished reading and tried the code? Mark it done.';
+  document.getElementById('celebrate').style.display=(done===IDS.length)?'block':'none';
+  var nl=document.getElementById('nextlink');if(nl)nl.classList.toggle('hl',d);
+}
+document.getElementById('done').onclick=function(){var p=getProg();if(p[ID])delete p[ID];else p[ID]=1;setProg(p);paint()};
+try{localStorage.setItem('dsa-last',PATH)}catch(e){}
+paint();
+/* scroll-spy: highlight the sidebar subsection whose heading was scrolled past last */
+(function(){
+  var subs=[].slice.call(document.querySelectorAll('aside .sub a')),aside=document.querySelector('aside'),hd=document.querySelector('.hd');
+  var hs=subs.map(function(a){return document.getElementById(a.getAttribute('href').slice(1))});
+  if(!subs.length)return;
+  var cur=-1,tick=false;
+  function spy(){tick=false;
+    var line=(hd?hd.offsetHeight:0)+24,i=-1;
+    hs.forEach(function(h,k){if(h&&h.getBoundingClientRect().top<=line)i=k});
+    if(innerHeight+scrollY>=document.documentElement.scrollHeight-2)          /* at the bottom: last heading on screen */
+      hs.forEach(function(h,k){if(h&&h.getBoundingClientRect().top<innerHeight)i=k});
+    if(i===cur)return;
+    if(cur>=0)subs[cur].classList.remove('cur');
+    cur=i;
+    if(i<0)return;
+    var a=subs[i];a.classList.add('cur');
+    var r=a.getBoundingClientRect(),ar=aside.getBoundingClientRect();     /* keep it visible in the sidebar without moving the page */
+    if(r.top<ar.top+8||r.bottom>ar.bottom-8)aside.scrollTop+=r.top-ar.top-ar.height/2;
+  }
+  addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(spy)}},{passive:true});
+  addEventListener('resize',spy);spy();
+})();
+addEventListener('keydown',function(e){if(e.altKey||e.ctrlKey||e.metaKey||/INPUT|TEXTAREA/.test((e.target||{}).tagName||''))return;
+  var l=document.querySelector(e.key==='ArrowRight'?'.pager .next':e.key==='ArrowLeft'?'.pager .prev':'#none');if(l)location.href=l.href});
+/* swipe: left = next, right = previous. Ignored on horizontally scrollable code/tables, inputs, zoomed pages and text selections */
+var tx=0,ty=0,tt=0,tel=null;
+function swipeTarget(dx,dy,dt,el){
+  if(Math.abs(dx)<70||Math.abs(dx)<1.8*Math.abs(dy)||dt>700)return null;
+  if(window.visualViewport&&visualViewport.scale>1.05)return null;
+  if(document.body.classList.contains('menu-open'))return null;
+  for(var e=el;e&&e!==document.body;e=e.parentElement){
+    if(/INPUT|TEXTAREA|BUTTON|SELECT/.test(e.tagName))return null;
+    if(e.scrollWidth>e.clientWidth+2){var ox=getComputedStyle(e).overflowX;if(ox==='auto'||ox==='scroll')return null}
+  }
+  if(window.getSelection&&String(getSelection()))return null;
+  var l=document.querySelector(dx<0?'.pager .next':'.pager .prev');return l?l.href:null;
+}
+document.addEventListener('touchstart',function(e){if(e.touches.length!==1){tel=null;return}var t=e.touches[0];tx=t.clientX;ty=t.clientY;tt=Date.now();tel=e.target},{passive:true});
+document.addEventListener('touchend',function(e){if(!tel)return;var t=e.changedTouches[0],h=swipeTarget(t.clientX-tx,t.clientY-ty,Date.now()-tt,tel);tel=null;if(h)location.href=h},{passive:true});
+</script>
+</body>
+</html>

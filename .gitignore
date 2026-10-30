@@ -1,0 +1,61 @@
+# --- C++ build output ---
+*.o
+*.obj
+*.d
+*.gch
+*.pch
+*.a
+*.lib
+*.so
+*.dylib
+*.dll
+*.exe
+*.out
+a.out
+*.dSYM/
+build/
+bin/
+cmake-build-*/
+
+# --- Local test files and stress-test leftovers ---
+in.txt
+out.txt
+o1.txt
+o2.txt
+input*.txt
+output*.txt
+sol
+brute
+gen
+
+# --- Debugging / profiling ---
+core.*
+vgcore.*
+*.log
+perf.data*
+gmon.out
+
+# --- Site build script (local only; regenerates the HTML) ---
+tools/
+
+# --- Python ---
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# --- Editors and OS ---
+.vscode/
+.idea/
+*.swp
+*~
+.DS_Store
+Thumbs.db
+
+# --- Claude Code local settings ---
+.claude/settings.local.json
+
+# --- Compiled binaries without an extension (g++ x.cpp -o x) ---
+OA/Nvidia/nvidia_241026
+striver/trie/complete_string
+striver/trie/trie_impl
